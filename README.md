@@ -21,7 +21,7 @@ To install this component is very easy and it has just one dependency: React ([w
   $ bower install --save-dev react-simpletabs
 ```
 
-- Or if you want to [download the script directilly](/src) and put in your website, its will work too! :smile_cat:
+- Or if you want to [download the script directilly](https://github.com/pedronauck/react-simpletabs/archive/v0.0.1.zip) and put in your website, its will work too! :smile_cat:
 
 It's ready to use!
 
