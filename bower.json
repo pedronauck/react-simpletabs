@@ -1,0 +1,30 @@
+{
+  "name": "react-simpletabs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pedronauck/react-simpletabs",
+  "authors": [
+    "Pedro Nauck <pedronauck@gmail.com> (https://github.com/pedronauck)"
+  ],
+  "description": "Just a simple tabs component built with React",
+  "main": "src/react-simpletabs.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "react-tabs",
+    "tabs",
+    "tab"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
