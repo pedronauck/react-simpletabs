@@ -67,7 +67,7 @@ If you decide to use just Javascript without any module loader, you can get the 
   });
 ```
 
-###### <Tabs.Panel>
+##### <Tabs.Panel>
 
 Well, the `Tabs.Panel` component is a [namespaced component](http://facebook.github.io/react/blog/2014/07/17/react-v0.11.html#jsx) of the `Tabs`, this is most easy and avoid you to declare a bunch of variables.
 
