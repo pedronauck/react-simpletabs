@@ -2,66 +2,39 @@
 'use strict';
 
 var gulp = require('gulp'),
-		gutil = require('gulp-util'),
-		source = require('vinyl-source-stream'),
-		browserify = require('browserify'),
-		webserver = require('gulp-webserver'),
-		reactify = require('reactify'),
-		stylus = require('gulp-stylus'),
-		nib = require('nib');
+		umd = require('gulp-umd'),
+		react = require('gulp-react'),
+		uglify = require('gulp-uglify'),
+		rename = require('gulp-rename');
 
-var app = {
-	path: {
-		root: './src',
-		styles: './src/css',
-		scripts: './src/js'
+var umdSettings = {
+	exports: function(file) {
+		return 'Tabs';
+	},
+	namespace: function(file) {
+		return 'ReactTabs';
+	},
+	dependencies: function(file) {
+		return [{
+			name: 'React',
+			amd: 'react',
+			cjs: 'react',
+			global: 'React',
+			param: 'React'
+		}];
 	}
 };
 
-gulp.task('server', function() {
-	gulp
-		.src('./dist')
-		.pipe(webserver({
-			port: 3001,
-			livereload: true
-		}));
-});
-
-gulp.task('html', function() {
-	gulp
-		.src(app.path.root + '/*.html')
-		.pipe(gulp.dest('./dist'));
-});
-
-gulp.task('css', function() {
-	gulp
-		.src(app.path.styles + '/*.styl')
-		.pipe(stylus({
-			use: [nib],
-			errors: true
-		}))
-		.on('error', gutil.log)
-		.pipe(gulp.dest('./dist/css'));
-});
-
-gulp.task('scripts', function() {
-	browserify({
-		insertGlobals: true,
-		entries: [app.path.scripts + '/main.jsx'],
-		transform: ['reactify'],
-		extensions: ['.jsx']
-	})
-	.bundle()
-	.on('error', gutil.log)
-	.pipe(source('bundle.js'))
-	.pipe(gulp.dest('./dist/js'));
+gulp.task('bundle', function() {
+	gulp.src('./lib/react-simpletabs.jsx')
+		.pipe(react())
+		.pipe(umd(umdSettings))
+		.pipe(gulp.dest('./src'))
+		.pipe(uglify())
+		.pipe(rename({ suffix: '.min' }))
+		.pipe(gulp.dest('./src'));
 });
 
 gulp.task('watch', function() {
-	gulp.watch(app.path.root + '/*.html', ['html']);
-	gulp.watch(app.path.styles + '/*.styl', ['css']);
-	gulp.watch(app.path.scripts + '/**/*.jsx', ['scripts']);
+	gulp.watch('./lib/react-simpletabs.jsx', ['bundle']);
 });
-
-gulp.task('build', ['html', 'scripts', 'css']);
-gulp.task('default', ['build', 'server', 'watch']);

@@ -1,4 +1,4 @@
-/* jshint -W117 */
+/** @jsx React.DOM */
 'use strict';
 
 var React = require('react');
