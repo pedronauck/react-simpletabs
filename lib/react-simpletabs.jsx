@@ -91,6 +91,6 @@ Tabs.Panel = React.createClass({
     title: React.PropTypes.string.isRequired
   },
   render: function() {
-    return this.props.children;
+    return <div>{this.props.children}</div>;
   }
 });
