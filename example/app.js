@@ -1,22 +1,17 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = require('react');
-var Tabs = require('./components/Tabs');
-
+var Tabs = ReactSimpleTabs;
 var App = React.createClass({
   onBeforeChange: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
-    // console.log('before the tab ' + selectedIndex);
+    console.log('before the tab ' + selectedIndex);
   },
   onAfterChange: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
-    // console.log('after the tab ' + selectedIndex);
+    console.log('after the tab ' + selectedIndex);
   },
   render: function() {
     return (
-      <Tabs
-        tabActive={2}
-        onBeforeChange={this.onBeforeChange}
-        onAfterChange={this.onAfterChange}>
+      <Tabs tabActive={2} onBeforeChange={this.onBeforeChange} onAfterChange={this.onAfterChange}>
         <Tabs.Panel title='Tab #1'>
           <h2>Content #1</h2>
         </Tabs.Panel>
@@ -31,7 +26,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(
-	<App />,
-	document.getElementById('tabs')
-);
+React.renderComponent(<App />, document.getElementById('tabs'));

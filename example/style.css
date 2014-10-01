@@ -6,6 +6,8 @@
   box-sizing: border-box;
 }
 
+a { text-decoration: none; }
+
 body {
   font-family: "Source Sans Pro", sans-serif;
 }
@@ -20,6 +22,10 @@ body {
   color: #919191;
   text-shadow: 0 1px 0 rgba(255,255,255,0.9);
 }
+
+/* =============================================================================
+  An example of how stylize the tabs
+============================================================================= */
 
 .tabs-navigation {
   padding: 0 50px;
@@ -41,15 +47,12 @@ body {
 }
 
 .tabs-menu-item a {
-  padding: 0 40px;
   display: block;
+  padding: 0 40px;
   height: 50px;
   line-height: 50px;
-  background: transparent;
   border-bottom: 0;
   color: #a9a9a9;
-  text-decoration: none;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.9);
 }
 
 .tabs-menu-item:not(.is-active) a:hover {
@@ -65,12 +68,10 @@ body {
 }
 
 .tabs-panel {
-  padding: 50px;
   display: none;
-  opacity: 0;
+  padding: 50px;
 }
 
 .tabs-panel.is-active {
-  opacity: 1;
   display: block;
 }
