@@ -4,9 +4,10 @@
 var React = require('react');
 
 module.exports = React.createClass({
+  propTypes: {
+    title: React.PropTypes.string.isRequired
+  },
   render: function() {
-    return (
-      <div>{this.props.children}</div>
-    );
+    return this.props.children;
   }
 });

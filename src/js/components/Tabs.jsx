@@ -4,28 +4,59 @@
 var React = require('react/addons');
 
 var Tabs = React.createClass({
+	propTypes: {
+		tabActive: React.PropTypes.number,
+		onBeforeChange: React.PropTypes.func,
+		onAfterChange: React.PropTypes.func
+	},
+	getDefaultProps: function() {
+		return { tabActive: 1 };
+	},
 	getInitialState: function() {
-		return {
-			tabActive: 1
-		}
+		return { tabActive: this.props.tabActive };
+	},
+	render: function() {
+		var menuItems = this._getMenuItems();
+		var panelsList = this._getPanels();
+
+		return (
+			<div className='tabs'>
+				{menuItems}
+				{panelsList}
+			</div>
+		);
 	},
 	setActive: function(e) {
-		var id = parseInt(e.target.getAttribute('data-id'));
+		var id = parseInt(e.target.getAttribute('data-tab-id'));
+		var onAfterChange = this.props.onAfterChange;
+		var onBeforeChange = this.props.onBeforeChange;
+		var $selectedPanel = this.refs['tab-panel-' + id];
+		var $selectedTabMenu = this.refs['tab-menu-' + id];
 
-		this.setState({ tabActive: id });
+		if (onBeforeChange) {
+			onBeforeChange(id, $selectedPanel, $selectedTabMenu);
+		}
+
+		this.setState({ tabActive: id }, function() {
+			if (onAfterChange) {
+				onAfterChange(id, $selectedPanel, $selectedTabMenu);
+			}
+		});
+
 		e.preventDefault();
 	},
-	getMenuItems: function() {
+	_getMenuItems: function() {
 		var $menuItems = this.props.children.map(function($panel, index) {
+			var ref = 'tab-menu-' + (index + 1);
 			var title = $panel.props.title;
 			var classes = React.addons.classSet({
 				'tabs-menu-item': true,
-				'is-active': this.state.tabActive === index + 1
+				'is-active': this.state.tabActive === (index + 1)
 			});
 
 			return (
-				<li key={index} className={classes}>
-					<a href='#' data-id={index + 1} onClick={this.setActive}>{title}</a>
+				<li ref={ref} key={index} className={classes}>
+					<a href='#' data-tab-id={index + 1} onClick={this.setActive}>{title}</a>
 				</li>
 			);
 		}.bind(this));
@@ -36,33 +67,21 @@ var Tabs = React.createClass({
 			</nav>
 		);
 	},
-	getPanels: function() {
+	_getPanels: function() {
 		var $panels = this.props.children.map(function($panel, index) {
+			var ref = 'tab-panel-' + (index + 1);
 			var classes = React.addons.classSet({
 				'tabs-panel': true,
-				'is-active': this.state.tabActive === index + 1
+				'is-active': this.state.tabActive === (index + 1)
 			});
 
 			return (
-				<article key={index} className={classes}>
-					{$panel.props.children}
-				</article>
+				<article ref={ref} key={index} className={classes}>{$panel}</article>
 			);
 		}.bind(this));
 
 		return (
 			<section className='tabs-panels'>{$panels}</section>
-		);
-	},
-	render: function() {
-		var menuItems = this.getMenuItems();
-		var panelsList = this.getPanels();
-
-		return (
-			<div className='tabs'>
-				{menuItems}
-				{panelsList}
-			</div>
 		);
 	}
 });
