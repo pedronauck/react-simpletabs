@@ -12,7 +12,7 @@ var umdSettings = {
 		return 'Tabs';
 	},
 	namespace: function(file) {
-		return 'ReactTabs';
+		return 'ReactSimpleTabs';
 	},
 	dependencies: function(file) {
 		return [{

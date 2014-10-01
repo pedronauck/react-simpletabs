@@ -4,13 +4,14 @@
   } else if (typeof exports === 'object') {
     module.exports = factory(require('react'));
   } else {
-    root.ReactTabs = factory(root.React);
+    root.ReactSimpleTabs = factory(root.React);
   }
 }(this, function(React) {
 /** @jsx React.DOM */
 'use strict';
 
-var Tabs = React.createClass({displayName: 'Tabs',
+var Tabs = React.createClass({
+  displayName: 'Tabs',
   propTypes: {
     tabActive: React.PropTypes.number,
     onBeforeChange: React.PropTypes.func,
@@ -93,7 +94,8 @@ var Tabs = React.createClass({displayName: 'Tabs',
   }
 });
 
-Tabs.Panel = React.createClass({displayName: 'Panel',
+Tabs.Panel = React.createClass({
+  displayName: 'Panel',
   propTypes: {
     title: React.PropTypes.string.isRequired
   },

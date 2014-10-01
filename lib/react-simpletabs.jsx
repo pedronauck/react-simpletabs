@@ -2,6 +2,7 @@
 'use strict';
 
 var Tabs = React.createClass({
+  displayName: 'Tabs',
   propTypes: {
     tabActive: React.PropTypes.number,
     onBeforeChange: React.PropTypes.func,
@@ -85,6 +86,7 @@ var Tabs = React.createClass({
 });
 
 Tabs.Panel = React.createClass({
+  displayName: 'Panel',
   propTypes: {
     title: React.PropTypes.string.isRequired
   },
