@@ -3,13 +3,15 @@ React SimpleTabs
 
 ![](http://f.cl.ly/items/25263r432i1W2U3p3b2m/react-simplestabs-screenshot.png)
 
-This is a simple Tabs component built with ReactJS. See the [Demo](http://embed.plnkr.co/p6YVUK/preview).
+This is a simple `<Tabs>` component built with ReactJS.
+
+#### See the [Demo](http://embed.plnkr.co/p6YVUK/preview).
 
 ## Install
 
-To install this component is very easy and it has just one dependency: React ([with Addons](http://facebook.github.io/react/downloads.html#react-with-add-ons-0.11.2-development) because it's using `React.classSet`). So, you have a lot of options do install this component:
+To install this component is very easy and it has just one dependency: React ([with Addons](http://facebook.github.io/react/downloads.html#react-with-add-ons-0.11.2-development) because it's using `React.classSet`). So, you have a lot of options to do that:
 
-- Using NPM ~the most quickly way~
+- Using NPM *~the most quickly way~*
 ```bash
   $ npm install --save-dev react-simpletabs
 ```
@@ -19,7 +21,7 @@ To install this component is very easy and it has just one dependency: React ([w
   $ bower install --save-dev react-simpletabs
 ```
 
-- Or if you want to [get the script directilly](/src) and put in your website, its will work too! :smile_cat:
+- Or if you want to [download the script directilly](/src) and put in your website, its will work too! :smile_cat:
 
 It's ready to use!
 
