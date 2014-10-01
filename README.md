@@ -9,9 +9,9 @@ This is a simple `<Tabs>` component built with ReactJS.
 
 ## Install
 
-To install this component is very easy and it has just one dependency: React ([with Addons](http://facebook.github.io/react/downloads.html#react-with-add-ons-0.11.2-development) because it's using `React.classSet`). So, you have a lot of options to do that:
+Installing this component is very easy and it has just one dependency: React ([with Addons](http://facebook.github.io/react/downloads.html#react-with-add-ons-0.11.2-development) because it's using `React.classSet`). So, you have a lot of options to do that:
 
-- Using NPM *~the most quickly way~*
+- Using NPM *~the quickest way~*
 ```bash
   $ npm install --save-dev react-simpletabs
 ```
@@ -21,13 +21,13 @@ To install this component is very easy and it has just one dependency: React ([w
   $ bower install --save-dev react-simpletabs
 ```
 
-- Or if you want to [download the last release](https://github.com/pedronauck/react-simpletabs/archive/v0.0.4.zip) and put in your website, its will work too! :smile_cat:
+- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.0.4.zip) and put in your website, it will work too! :smile_cat:
 
-It's ready to use!
+Then you're done!
 
 ## Usage
 
-To use the component is most simple than install. See an example with [browserify](http://truongtx.me/2014/07/18/using-reactjs-with-browserify-and-gulp/) to bundle your script:
+Using the component is simpler than installing. See an example with [browserify](http://truongtx.me/2014/07/18/using-reactjs-with-browserify-and-gulp/) to bundle your script:
 
 ```javascript
 /** @jsx React.DOM */
@@ -69,15 +69,15 @@ If you decide to use just Javascript without any module loader, you can get the 
 
 ##### `<Tabs.Panel>`
 
-Well, the `Tabs.Panel` component is a [namespaced component](http://facebook.github.io/react/blog/2014/07/17/react-v0.11.html#jsx) of the `Tabs`, this is most easy and avoid you to declare a bunch of variables.
+Well, the `Tabs.Panel` component is a [namespaced component](http://facebook.github.io/react/blog/2014/07/17/react-v0.11.html#jsx) of the `Tabs`, this is easiest way and you avoid to declare a bunch of variables.
 
-**NOTE:** It's required that you put the `title` property to the `Tabs.Panel` component. Without this the component won't work, ok?
+**NOTE:** It is required that you put the `title` property to the `Tabs.Panel` component. Without this, the component won't work, ok?
 
 ## Behind the Scene
 
-Has some things that you should know about the component. The first one is the structure created inside by the component if you wish to stylize it.
+There are some things that you should know about the component. The first one is the structure created inside by the component if you wish to stylize it.
 
-So, the semantic html structure will be something like this:
+So, the semantic HTML structure will be something like this:
 
 ```html
   <div class='tabs'>
@@ -94,7 +94,7 @@ So, the semantic html structure will be something like this:
   <div>
 ```
 
-This is very simple structure to stylize however you want. So, if you are lost, no trouble, has a [real functional example](/example) that you can see.
+This is a very simple structure to stylize however you want. So, if you are lost, don't panic, there is a [real functional example](/example) that you can follow.
 
 The other thing that I have to share with you is that the component has some properties that you can use. Example:
 
@@ -112,7 +112,7 @@ If you want to set a default tab active you can use the `tabActive` property:
   ...
 ```
 
-And if you want to do something after or before the tab changed you can do use the `onBeforeChange` or `onAfterChange` property (or both together):
+And if you want to do something before or after the changed tab, you can do use the `onBeforeChange` or `onAfterChange` property (or both together):
 
 ```javascript
   ...
@@ -135,7 +135,7 @@ And if you want to do something after or before the tab changed you can do use t
   ...
 ```
 
-For more details see the API bellow.
+For more details, check out the API below.
 
 ## Component API
 
@@ -144,8 +144,8 @@ For more details see the API bellow.
 Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------
 tabActive | `Number` | 1 | no | The default tab active
-onBeforeChange | `Function` | n/a | no | The function that will executed **before** the state of the component change
-onAfterChange | `Function` | n/a | no | The function that will executed **after** the state of the component change
+onBeforeChange | `Function` | n/a | no | The function that will be executed **before** the state of the component change
+onAfterChange | `Function` | n/a | no | The function that will be executed **after** the state of the component change
 
 `<Tab.Panel>` component:
 
