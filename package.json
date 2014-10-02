@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "Just a simple tabs component built with React",
   "license": "MIT",
-  "main": "src/react-simpletabs.js",
+  "main": "dist/react-simpletabs.js",
   "devDependencies": {
     "gulp": "^3.8.6",
     "gulp-react": "^1.0.2",

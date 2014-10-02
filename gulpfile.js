@@ -29,10 +29,10 @@ gulp.task('bundle', function() {
 	gulp.src('./lib/react-simpletabs.jsx')
 		.pipe(react())
 		.pipe(umd(umdSettings))
-		.pipe(gulp.dest('./src'))
+		.pipe(gulp.dest('./dist'))
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('./src'));
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('watch', function() {

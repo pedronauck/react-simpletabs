@@ -6,7 +6,7 @@
     "Pedro Nauck <pedronauck@gmail.com> (https://github.com/pedronauck)"
   ],
   "description": "Just a simple tabs component built with React",
-  "main": "src/react-simpletabs.js",
+  "main": "dist/react-simpletabs.js",
   "moduleType": [
     "amd",
     "globals",

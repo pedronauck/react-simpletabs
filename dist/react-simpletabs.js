@@ -30,7 +30,10 @@ var Tabs = React.createClass({
     tabActive: React.PropTypes.number,
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
-    children: React.PropTypes.component.isRequired
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.component
+    ]).isRequired
   },
   getDefaultProps: function() {
     return { tabActive: 1 };
@@ -43,7 +46,7 @@ var Tabs = React.createClass({
     var panelsList = this._getPanels();
 
     return (
-      React.DOM.div({className: "Tabs"}, 
+      React.DOM.div({className: "tabs"}, 
         menuItems, 
         panelsList
       )
@@ -120,7 +123,10 @@ Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
     title: React.PropTypes.string.isRequired,
-    children: React.PropTypes.component
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.component
+    ]).isRequired
   },
   render: function() {
     return React.DOM.div(null, this.props.children);
