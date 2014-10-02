@@ -10,12 +10,27 @@
 /** @jsx React.DOM */
 'use strict';
 
+/**
+ * Produces the same result as
+ * React.addons.classSet
+ * @param  {object} classes
+ * @return {string}
+ */
+var classSet = function (classes) {
+  return typeof classes !== 'object' ?
+    Array.prototype.join.call(arguments, ' ') :
+    Object.keys(classes).filter(function(className) {
+      return classes[className];
+    }).join(' ');
+};
+
 var Tabs = React.createClass({
   displayName: 'Tabs',
   propTypes: {
     tabActive: React.PropTypes.number,
     onBeforeChange: React.PropTypes.func,
-    onAfterChange: React.PropTypes.func
+    onAfterChange: React.PropTypes.func,
+    children: React.PropTypes.component.isRequired
   },
   getDefaultProps: function() {
     return { tabActive: 1 };
@@ -28,7 +43,7 @@ var Tabs = React.createClass({
     var panelsList = this._getPanels();
 
     return (
-      React.DOM.div({className: "tabs"}, 
+      React.DOM.div({className: "Tabs"}, 
         menuItems, 
         panelsList
       )
@@ -54,10 +69,17 @@ var Tabs = React.createClass({
     e.preventDefault();
   },
   _getMenuItems: function() {
+    if (!this.props.children) {
+      throw new Error('Tabs must contain at least one Tabs.Panel');
+    }
+
+    (toString.call(this.props.children) !== '[object Array]' &&
+      (this.props.children = [this.props.children]));
+
     var $menuItems = this.props.children.map(function($panel, index) {
       var ref = 'tab-menu-' + (index + 1);
       var title = $panel.props.title;
-      var classes = React.addons.classSet({
+      var classes = classSet({
         'tabs-menu-item': true,
         'is-active': this.state.tabActive === (index + 1)
       });
@@ -78,7 +100,7 @@ var Tabs = React.createClass({
   _getPanels: function() {
     var $panels = this.props.children.map(function($panel, index) {
       var ref = 'tab-panel-' + (index + 1);
-      var classes = React.addons.classSet({
+      var classes = classSet({
         'tabs-panel': true,
         'is-active': this.state.tabActive === (index + 1)
       });
@@ -97,7 +119,8 @@ var Tabs = React.createClass({
 Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.string.isRequired,
+    children: React.PropTypes.component
   },
   render: function() {
     return React.DOM.div(null, this.props.children);
