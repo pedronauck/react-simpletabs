@@ -1,19 +1,12 @@
 /** @jsx React.DOM */
 'use strict';
 
-/**
- * Produces the same result as
- * React.addons.classSet
- * @param  {object} classes
- * @return {string}
- */
-var classSet = function (classes) {
-  return typeof classes !== 'object' ?
-    Array.prototype.join.call(arguments, ' ') :
-    Object.keys(classes).filter(function(className) {
-      return classes[className];
-    }).join(' ');
-};
+var React = require('react');
+var classSet = require('../utils/classSet');
+
+if (process.env.NODE_ENV !== 'test') {
+  require('./react-simpletabs.styl');
+}
 
 var Tabs = React.createClass({
   displayName: 'Tabs',
@@ -26,13 +19,13 @@ var Tabs = React.createClass({
       React.PropTypes.component
     ]).isRequired
   },
-  getDefaultProps: function() {
+  getDefaultProps () {
     return { tabActive: 1 };
   },
-  getInitialState: function() {
+  getInitialState () {
     return { tabActive: this.props.tabActive };
   },
-  render: function() {
+  render () {
     var menuItems = this._getMenuItems();
     var panelsList = this._getPanels();
 
@@ -43,7 +36,7 @@ var Tabs = React.createClass({
       </div>
     );
   },
-  setActive: function(e) {
+  setActive (e) {
     var id = parseInt(e.target.getAttribute('data-tab-id'));
     var onAfterChange = this.props.onAfterChange;
     var onBeforeChange = this.props.onBeforeChange;
@@ -54,7 +47,7 @@ var Tabs = React.createClass({
       onBeforeChange(id, $selectedPanel, $selectedTabMenu);
     }
 
-    this.setState({ tabActive: id }, function() {
+    this.setState({ tabActive: id }, () => {
       if (onAfterChange) {
         onAfterChange(id, $selectedPanel, $selectedTabMenu);
       }
@@ -62,16 +55,17 @@ var Tabs = React.createClass({
 
     e.preventDefault();
   },
-  _getMenuItems: function() {
+  _getMenuItems () {
     if (!this.props.children) {
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    (toString.call(this.props.children) !== '[object Array]' &&
-      (this.props.children = [this.props.children]));
+    if (!Array.isArray(this.props.children)) {
+      this.props.children = [this.props.children];
+    }
 
-    var $menuItems = this.props.children.map(function($panel, index) {
-      var ref = 'tab-menu-' + (index + 1);
+    var $menuItems = this.props.children.map(($panel, index) => {
+      var ref = 'tab-menu-${index + 1}';
       var title = $panel.props.title;
       var classes = classSet({
         'tabs-menu-item': true,
@@ -83,7 +77,7 @@ var Tabs = React.createClass({
           <a href='#' data-tab-id={index + 1} onClick={this.setActive}>{title}</a>
         </li>
       );
-    }.bind(this));
+    });
 
     return (
       <nav className='tabs-navigation'>
@@ -91,9 +85,9 @@ var Tabs = React.createClass({
       </nav>
     );
   },
-  _getPanels: function() {
-    var $panels = this.props.children.map(function($panel, index) {
-      var ref = 'tab-panel-' + (index + 1);
+  _getPanels () {
+    var $panels = this.props.children.map(($panel, index) => {
+      var ref = 'tab-panel-${index + 1}';
       var classes = classSet({
         'tabs-panel': true,
         'is-active': this.state.tabActive === (index + 1)
@@ -102,7 +96,7 @@ var Tabs = React.createClass({
       return (
         <article ref={ref} key={index} className={classes}>{$panel}</article>
       );
-    }.bind(this));
+    });
 
     return (
       <section className='tabs-panels'>{$panels}</section>
@@ -119,7 +113,9 @@ Tabs.Panel = React.createClass({
       React.PropTypes.component
     ]).isRequired
   },
-  render: function() {
+  render () {
     return <div>{this.props.children}</div>;
   }
 });
+
+module.exports = Tabs;

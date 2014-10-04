@@ -32,18 +32,27 @@
     "testFileExtensions": [
       "js",
       "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
     ]
   },
   "dependencies": {
     "react": "^0.11.2"
   },
   "devDependencies": {
+    "browser-sync": "^1.5.2",
+    "css-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^0.3.1",
     "gulp": "^3.8.6",
-    "gulp-react": "^1.0.2",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.0.1",
-    "gulp-umd": "^0.1.3",
+    "gulp-util": "^3.0.1",
     "jest-cli": "^0.1.18",
-    "react-tools": "^0.11.2"
+    "jsx-loader": "^0.11.2",
+    "react-tools": "^0.11.2",
+    "style-loader": "^0.8.1",
+    "stylus-loader": "^0.4.0",
+    "webpack": "^1.4.4"
   }
 }
