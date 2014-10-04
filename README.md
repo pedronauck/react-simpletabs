@@ -1,13 +1,14 @@
 # React SimpleTabs
 
 ![Travis](http://img.shields.io/travis/pedronauck/react-simpletabs.svg?style=flat) ![license](http://img.shields.io/npm/l/react-simpletabs.svg?style=flat)
-[![NPM](https://nodei.co/npm/react-simpletabs.png?downloads=true)](https://nodei.co/npm/react-simpletabs/)
+
+[![NPM](https://nodei.co/npm/react-simpletabs.png)](https://nodei.co/npm/react-simpletabs/)
+
+![](http://f.cl.ly/items/25263r432i1W2U3p3b2m/react-simplestabs-screenshot.png)
 
 This is a simple `<Tabs>` component built with ReactJS.
 
 #### See the [Demo](http://embed.plnkr.co/p6YVUK/preview).
-
-![](http://f.cl.ly/items/25263r432i1W2U3p3b2m/react-simplestabs-screenshot.png)
 
 ## Install
 
