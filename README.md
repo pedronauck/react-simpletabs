@@ -24,7 +24,7 @@ Installing this component is very easy and it has just one dependency: [React](h
   $ bower install --save react-simpletabs
 ```
 
-- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.0.4.zip) and put in your website, it will work too! :smile_cat:
+- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.1.0.zip) and put in your website, it will work too! :smile_cat:
 
 Then you're done!
 
