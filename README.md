@@ -1,6 +1,6 @@
 # React SimpleTabs
 
-![Travis](http://img.shields.io/travis/pedronauck/react-simpletabs.svg?style=flat) ![license](http://img.shields.io/npm/l/react-simpletabs.svg?style=flat)
+![Git release](http://img.shields.io/github/release/pedronauck/react-simpletabs.svg?style=flat) ![Travis](http://img.shields.io/travis/pedronauck/react-simpletabs.svg?style=flat) ![license](http://img.shields.io/npm/l/react-simpletabs.svg?style=flat)
 
 [![NPM](https://nodei.co/npm/react-simpletabs.png)](https://nodei.co/npm/react-simpletabs/)
 
