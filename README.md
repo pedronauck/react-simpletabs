@@ -24,9 +24,11 @@ Installing this component is very easy and it has just one dependency: [React](h
   $ bower install --save react-simpletabs
 ```
 
-- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.1.0.zip) and put in your website, it will work too! :smile_cat:
+- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.1.0.zip) and put in your website, it will work too!
 
-Then you're done!
+**NOTICE:** You need just one thing to make the component work. Put the [base component style](./dist/react-simpletabs.css) at the `<header>` tag. If you don't wanna use the `.css` extension, you can get the `.styl` or `.scss` extension at the folder `./lib`.
+
+Then you're done! :smile_cat:
 
 ## Usage
 
@@ -158,20 +160,8 @@ title | `String` | n/a | yes | The title that will generate the *tab menu items*
 
 ## Contributing
 
-Please, if you see anything wrong you can fix/improve it :ghost:
-
-1. Fork it!
-1. Create your feature branch: git checkout -b my-new-feature
-1. Commit your changes: git commit -m 'Add some feature'
-1. Push to the branch: git push origin my-new-feature
-1. Submit a pull request :D
+Anyone can help make this project better - check out the [Contributing guide](CONTRIBUTING.md)!
 
 ## License
 
-(The MIT License)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+See the [License](LICENSE) file.
