@@ -1,40 +1,63 @@
-/* jshint -W117 */
 'use strict';
 
-var gulp = require('gulp'),
-		umd = require('gulp-umd'),
-		react = require('gulp-react'),
-		uglify = require('gulp-uglify'),
-		rename = require('gulp-rename');
+var _ = require('lodash'),
+    gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    browserSync = require('browser-sync'),
+    webpack = require('webpack'),
+    webpackConfig = require('./webpack.config.js');
 
-var umdSettings = {
-	exports: function(file) {
-		return 'Tabs';
-	},
-	namespace: function(file) {
-		return 'ReactSimpleTabs';
-	},
-	dependencies: function(file) {
-		return [{
-			name: 'React',
-			amd: 'react',
-			cjs: 'react',
-			global: 'React',
-			param: 'React'
-		}];
-	}
-};
+var banner = _.template([
+  '',
+  ' React Simpletabs - <%= pkg.description %>',
+  ' @version v<%= pkg.version %>',
+  ' @link <%= pkg.homepage %>',
+  ' @license <%= pkg.license %>',
+  ' @author <%= pkg.author.name %> (<%= pkg.author.url %>)',
+  ''
+].join('\n'), {
+  pkg: require('./package.json')
+});
 
-gulp.task('bundle', function() {
-	gulp.src('./lib/react-simpletabs.jsx')
-		.pipe(react())
-		.pipe(umd(umdSettings))
-		.pipe(gulp.dest('./dist'))
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('./dist'));
+gulp.task('webpack', function(callback) {
+  var filename = webpackConfig.output.filename;
+
+  webpackConfig.plugins = webpackConfig.plugins.concat(
+    new webpack.BannerPlugin(banner, { entryOnly: true })
+  );
+
+  if (gutil.env.production) {
+    webpackConfig.output.filename = gutil.replaceExtension(filename, '.min.js');
+    webpackConfig.plugins = webpackConfig.plugins.concat(
+      new webpack.DefinePlugin({
+        'process.env': { 'NODE_ENV': JSON.stringify('production') }
+      }),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin()
+    );
+  }
+
+  webpack(webpackConfig).run(function(err, stats) {
+    if (err) {
+      throw new gutil.PluginError('webpack', err);
+    }
+
+    gutil.log('[webpack]', stats.toString({ colors: true }));
+    browserSync.reload();
+    callback();
+  });
+});
+
+gulp.task('server', function() {
+  browserSync({
+    server: {
+      baseDir: ['example', 'dist']
+    }
+  });
 });
 
 gulp.task('watch', function() {
-	gulp.watch('./lib/react-simpletabs.jsx', ['bundle']);
+  gulp.watch('./lib/**/*.{styl,jsx}', ['webpack']);
 });
+
+gulp.task('default', ['webpack', 'server', 'watch']);

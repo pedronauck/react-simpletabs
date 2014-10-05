@@ -2,7 +2,11 @@
   "name": "react-simpletabs",
   "version": "0.1.0",
   "description": "Just a simple tabs component built with React",
-  "author": "Pedro Nauck <pedronauck@gmail.com> (https://github.com/pedronauck)",
+  "author": {
+    "name": "Pedro Nauck",
+    "email": "pedronauck@gmail.com",
+    "url": "https://github.com/pedronauck"
+  },
   "bugs": {
     "url": "https://github.com/pedronauck/react-simpletabs/issues"
   },
@@ -21,7 +25,9 @@
     "tab"
   ],
   "scripts": {
-    "build": "gulp bundle",
+    "build-dev": "gulp webpack",
+    "build": "gulp webpack --production",
+    "start": "gulp",
     "test": "jest"
   },
   "jest": {
@@ -50,6 +56,7 @@
     "gulp-util": "^3.0.1",
     "jest-cli": "^0.1.18",
     "jsx-loader": "^0.11.2",
+    "lodash": "^2.4.1",
     "react-tools": "^0.11.2",
     "style-loader": "^0.8.1",
     "stylus-loader": "^0.4.0",
