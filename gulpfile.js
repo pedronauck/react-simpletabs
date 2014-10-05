@@ -20,14 +20,16 @@ var banner = _.template([
 });
 
 gulp.task('webpack', function(callback) {
-  var filename = webpackConfig.output.filename;
+  var jsFilename = webpackConfig.output.filename;
+  var cssFilename = webpackConfig.plugins[1].filename;
 
   webpackConfig.plugins = webpackConfig.plugins.concat(
     new webpack.BannerPlugin(banner, { entryOnly: true })
   );
 
   if (gutil.env.production) {
-    webpackConfig.output.filename = gutil.replaceExtension(filename, '.min.js');
+    webpackConfig.output.filename = gutil.replaceExtension(jsFilename, '.min.js');
+    webpackConfig.plugins[1].filename = gutil.replaceExtension(cssFilename, '.min.css');
     webpackConfig.plugins = webpackConfig.plugins.concat(
       new webpack.DefinePlugin({
         'process.env': { 'NODE_ENV': JSON.stringify('production') }

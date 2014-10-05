@@ -25,8 +25,7 @@
     "tab"
   ],
   "scripts": {
-    "build-dev": "gulp webpack",
-    "build": "gulp webpack --production",
+    "bundle": "gulp webpack && gulp webpack --production",
     "start": "gulp",
     "test": "jest"
   },
