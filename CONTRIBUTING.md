@@ -27,7 +27,7 @@ Dependency | Description
 [Gulp](http://gulpjs.com/) | Run some tasks (bundle, server, etc)
 [BrowserSync](http://www.browsersync.io/) | Create a `localhost` server with livereload
 [Webpack](http://www.browsersync.io/) | Generated a UMD bundled version
-[Jest]([Jest](http://facebook.github.io/jest/)) | Run the tests
+[Jest](http://facebook.github.io/jest/) | Run the tests
 
 So, have some scripts that you need to know to run the project locally. It's just fews, but it's very important.
 
