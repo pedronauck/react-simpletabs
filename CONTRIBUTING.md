@@ -44,8 +44,8 @@ Command | Description
 
 ## Submitting a Pull request
 
-1. Make sure that all bundles are passing in [TravisCI](https://travis-ci.org/pedronauck/react-simpletabs)
 1. Create your feature branch: git checkout -b my-new-feature
 1. Commit your changes: git commit -m 'Add some feature'
 1. Push to the branch: git push origin my-new-feature
+1. Make sure that all bundles are passing in [TravisCI](https://travis-ci.org/pedronauck/react-simpletabs)
 1. Submit a pull request :D
