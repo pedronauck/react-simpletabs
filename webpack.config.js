@@ -1,8 +1,21 @@
 'use strict';
 
+var _ = require('lodash');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var LIB_NAME = 'react-simpletabs';
+
+var banner = _.template([
+  '',
+  ' React Simpletabs - <%= pkg.description %>',
+  ' @version v<%= pkg.version %>',
+  ' @link <%= pkg.homepage %>',
+  ' @license <%= pkg.license %>',
+  ' @author <%= pkg.author.name %> (<%= pkg.author.url %>)',
+  ''
+].join('\n'), {
+  pkg: require('./package.json')
+});
 
 module.exports = {
   entry: './lib/' + LIB_NAME + '.jsx',
@@ -46,6 +59,7 @@ module.exports = {
     }),
     new ExtractTextPlugin(LIB_NAME + '.css', {
       allChunks: true
-    })
+    }),
+    new webpack.BannerPlugin(banner, { entryOnly: true })
   ]
 };
