@@ -16,7 +16,7 @@ var Tabs = React.createClass({
     onAfterChange: React.PropTypes.func,
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
-      React.PropTypes.component
+      React.PropTypes.element
     ]).isRequired
   },
   getDefaultProps () {
