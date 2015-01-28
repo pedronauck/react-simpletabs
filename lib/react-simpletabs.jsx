@@ -5,7 +5,7 @@ var React = require('react');
 var classSet = require('../utils/classSet');
 
 if (process.env.NODE_ENV !== 'test') {
-  require('./react-simpletabs.styl');
+  require('./react-simpletabs.css');
 }
 
 var Tabs = React.createClass({

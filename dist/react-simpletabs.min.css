@@ -1,10 +1,10 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.2.2
+ *  @version v0.3.0
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
  * 
  */
-.tabs-navigation{padding:0 20px;max-height:50px;border-bottom:1px solid #ddd}.tabs-menu{display:table;list-style:none;padding:0;margin:0}.tabs-menu-item{float:left}.tabs-menu-item a{display:block;padding:0 40px;height:50px;line-height:50px;border-bottom:0;color:#a9a9a9}.tabs-menu-item:not(.is-active) a:hover{color:#3498db}.tabs-menu-item.is-active a{background:#fff;border:1px solid #ddd;border-top:2px solid #3498db;border-bottom:0;color:#333}.tab-panel{padding:30px 50px}
+.tabs-menu{display:table;list-style:none;padding:0;margin:0}.tabs-menu-item{float:left;margin-right:20px}.tabs-menu-item a{display:block;color:#A9A9A9}.tabs-menu-item:not(.is-active) a:hover,.tabs-menu-item.is-active a{color:#3498DB}.tab-panel{padding:10px 50px}
