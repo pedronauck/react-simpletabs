@@ -12,6 +12,7 @@ var Tabs = React.createClass({
   displayName: 'Tabs',
   propTypes: {
     tabActive: React.PropTypes.number,
+    onMount: React.PropTypes.func,
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
     children: React.PropTypes.oneOfType([
@@ -23,7 +24,18 @@ var Tabs = React.createClass({
     return { tabActive: 1 };
   },
   getInitialState () {
-    return { tabActive: this.props.tabActive };
+    return {
+      tabActive: this.props.tabActive
+    };
+  },
+  componentDidMount() {
+    var index = this.state.tabActive;
+    var $selectedPanel = this.refs['tab-panel'];
+    var $selectedMenu = this.refs[`tab-menu-${index}`];
+
+    if (this.props.onMount) {
+      this.props.onMount(index, $selectedPanel, $selectedMenu);
+    }
   },
   render () {
     return (
@@ -33,20 +45,19 @@ var Tabs = React.createClass({
       </div>
     );
   },
-  setActive (e) {
-    var id = parseInt(e.target.getAttribute('data-tab-id'));
+  setActive(index, e) {
     var onAfterChange = this.props.onAfterChange;
     var onBeforeChange = this.props.onBeforeChange;
-    var $selectedPanel = this.refs[`tab-panel-${id}`];
-    var $selectedTabMenu = this.refs[`tab-menu-${id}`];
+    var $selectedPanel = this.refs['tab-panel'];
+    var $selectedTabMenu = this.refs[`tab-menu-${index}`];
 
     if (onBeforeChange) {
-      onBeforeChange(id, $selectedPanel, $selectedTabMenu);
+      onBeforeChange(index, $selectedPanel, $selectedTabMenu);
     }
 
-    this.setState({ tabActive: id }, () => {
+    this.setState({ tabActive: index }, () => {
       if (onAfterChange) {
-        onAfterChange(id, $selectedPanel, $selectedTabMenu);
+        onAfterChange(index, $selectedPanel, $selectedTabMenu);
       }
     });
 
@@ -71,7 +82,9 @@ var Tabs = React.createClass({
 
       return (
         <li ref={ref} key={index} className={classes}>
-          <a href='#' data-tab-id={index + 1} onClick={this.setActive}>{title}</a>
+          <a href='#' onClick={this.setActive.bind(this, index + 1)}>
+            {title}
+          </a>
         </li>
       );
     });
@@ -87,7 +100,7 @@ var Tabs = React.createClass({
     var $panel = this.props.children[index];
 
     return (
-      <article ref={`tab-panel-${index + 1}`} className='tab-panel'>
+      <article ref='tab-panel' className='tab-panel'>
         {$panel}
       </article>
     );

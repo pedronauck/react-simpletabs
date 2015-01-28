@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.3.0
+ *  @version v0.3.1
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -77,6 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  displayName: 'Tabs',
 	  propTypes: {
 	    tabActive: React.PropTypes.number,
+	    onMount: React.PropTypes.func,
 	    onBeforeChange: React.PropTypes.func,
 	    onAfterChange: React.PropTypes.func,
 	    children: React.PropTypes.oneOfType([
@@ -88,7 +89,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return { tabActive: 1 };
 	  },
 	  getInitialState:function () {
-	    return { tabActive: this.props.tabActive };
+	    return {
+	      tabActive: this.props.tabActive
+	    };
+	  },
+	  componentDidMount:function() {
+	    var index = this.state.tabActive;
+	    var $selectedPanel = this.refs['tab-panel'];
+	    var $selectedMenu = this.refs[("tab-menu-" + index)];
+
+	    if (this.props.onMount) {
+	      this.props.onMount(index, $selectedPanel, $selectedMenu);
+	    }
 	  },
 	  render:function () {
 	    return (
@@ -98,20 +110,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      )
 	    );
 	  },
-	  setActive:function (e) {
-	    var id = parseInt(e.target.getAttribute('data-tab-id'));
+	  setActive:function(index, e) {
 	    var onAfterChange = this.props.onAfterChange;
 	    var onBeforeChange = this.props.onBeforeChange;
-	    var $selectedPanel = this.refs[("tab-panel-" + id)];
-	    var $selectedTabMenu = this.refs[("tab-menu-" + id)];
+	    var $selectedPanel = this.refs['tab-panel'];
+	    var $selectedTabMenu = this.refs[("tab-menu-" + index)];
 
 	    if (onBeforeChange) {
-	      onBeforeChange(id, $selectedPanel, $selectedTabMenu);
+	      onBeforeChange(index, $selectedPanel, $selectedTabMenu);
 	    }
 
-	    this.setState({ tabActive: id }, function()  {
+	    this.setState({ tabActive: index }, function()  {
 	      if (onAfterChange) {
-	        onAfterChange(id, $selectedPanel, $selectedTabMenu);
+	        onAfterChange(index, $selectedPanel, $selectedTabMenu);
 	      }
 	    });
 
@@ -136,7 +147,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      return (
 	        React.createElement("li", {ref: ref, key: index, className: classes}, 
-	          React.createElement("a", {href: "#", "data-tab-id": index + 1, onClick: this.setActive}, title)
+	          React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
+	            title
+	          )
 	        )
 	      );
 	    }.bind(this));
@@ -152,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var $panel = this.props.children[index];
 
 	    return (
-	      React.createElement("article", {ref: ("tab-panel-" + (index + 1)), className: "tab-panel"}, 
+	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"}, 
 	        $panel
 	      )
 	    );

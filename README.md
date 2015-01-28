@@ -24,7 +24,7 @@ Installing this component is very easy and it has just one dependency: [React](h
   $ bower install --save react-simpletabs
 ```
 
-- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.3.1.zip) and put in your website, it will work too!
+- Or if you want to [download the lastest release](https://github.com/pedronauck/react-simpletabs/archive/v0.4.1.zip) and put in your website, it will work too!
 
 **NOTICE:** You need just one thing to make the component work. Put the [base component style](./dist/react-simpletabs.css) at the `<header>` tag. If you don't wanna use the `.css` extension, you can get the `.styl` or `.scss` extension at the folder `./lib`.
 
@@ -120,6 +120,9 @@ And if you want to do something before or after the changed tab, you can do use 
 
 ```javascript
   ...
+  handleMount: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
+    console.log('on mount, showing tab ' + selectedIndex);
+  },
   handleBefore: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
     console.log('Something before tab ' + selectedIndex);
   },
@@ -131,7 +134,8 @@ And if you want to do something before or after the changed tab, you can do use 
       <Tabs
         tabActive={2}
         onBeforeChange={this.handleBefore}
-        onAfterChange={this.handleAfter}>
+        onAfterChange={this.handleAfter}
+        onMount={this.handleMount}>
         ...
       </Tabs>
     );
@@ -148,8 +152,10 @@ For more details, check out the API below.
 Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------
 tabActive | `Number` | 1 | no | The default tab active
+onMount | `Function` | n/a | no | The function that will be executed when the component is mounted
 onBeforeChange | `Function` | n/a | no | The function that will be executed **before** the state of the component change
-onAfterChange | `Function` | n/a | no | The function that will be executed **after** the state of the component change
+onAfterChange | `Function` | n/a | no | The function that will be executed **
+after** the state of the component change
 
 `<Tab.Panel>` component:
 
