@@ -26,13 +26,10 @@ var Tabs = React.createClass({
     return { tabActive: this.props.tabActive };
   },
   render () {
-    var menuItems = this._getMenuItems();
-    var panelsList = this._getPanels();
-
     return (
       <div className='tabs'>
-        {menuItems}
-        {panelsList}
+        {this._getMenuItems()}
+        {this._getSelectedPanel()}
       </div>
     );
   },
@@ -40,8 +37,8 @@ var Tabs = React.createClass({
     var id = parseInt(e.target.getAttribute('data-tab-id'));
     var onAfterChange = this.props.onAfterChange;
     var onBeforeChange = this.props.onBeforeChange;
-    var $selectedPanel = this.refs['tab-panel-' + id];
-    var $selectedTabMenu = this.refs['tab-menu-' + id];
+    var $selectedPanel = this.refs[`tab-panel-${id}`];
+    var $selectedTabMenu = this.refs[`tab-menu-${id}`];
 
     if (onBeforeChange) {
       onBeforeChange(id, $selectedPanel, $selectedTabMenu);
@@ -65,7 +62,7 @@ var Tabs = React.createClass({
     }
 
     var $menuItems = this.props.children.map(($panel, index) => {
-      var ref = 'tab-menu-${index + 1}';
+      var ref = `tab-menu-${index + 1}`;
       var title = $panel.props.title;
       var classes = classSet({
         'tabs-menu-item': true,
@@ -85,21 +82,14 @@ var Tabs = React.createClass({
       </nav>
     );
   },
-  _getPanels () {
-    var $panels = this.props.children.map(($panel, index) => {
-      var ref = 'tab-panel-${index + 1}';
-      var classes = classSet({
-        'tabs-panel': true,
-        'is-active': this.state.tabActive === (index + 1)
-      });
-
-      return (
-        <article ref={ref} key={index} className={classes}>{$panel}</article>
-      );
-    });
+  _getSelectedPanel () {
+    var index = this.state.tabActive - 1;
+    var $panel = this.props.children[index];
 
     return (
-      <section className='tabs-panels'>{$panels}</section>
+      <article ref={`tab-panel-${index + 1}`} className='tab-panel'>
+        {$panel}
+      </article>
     );
   }
 });

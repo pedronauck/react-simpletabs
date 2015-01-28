@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.2.2
+ *  @version v0.3.0
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -91,13 +91,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return { tabActive: this.props.tabActive };
 	  },
 	  render:function () {
-	    var menuItems = this._getMenuItems();
-	    var panelsList = this._getPanels();
-
 	    return (
 	      React.createElement("div", {className: "tabs"}, 
-	        menuItems, 
-	        panelsList
+	        this._getMenuItems(), 
+	        this._getSelectedPanel()
 	      )
 	    );
 	  },
@@ -105,8 +102,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var id = parseInt(e.target.getAttribute('data-tab-id'));
 	    var onAfterChange = this.props.onAfterChange;
 	    var onBeforeChange = this.props.onBeforeChange;
-	    var $selectedPanel = this.refs['tab-panel-' + id];
-	    var $selectedTabMenu = this.refs['tab-menu-' + id];
+	    var $selectedPanel = this.refs[("tab-panel-" + id)];
+	    var $selectedTabMenu = this.refs[("tab-menu-" + id)];
 
 	    if (onBeforeChange) {
 	      onBeforeChange(id, $selectedPanel, $selectedTabMenu);
@@ -130,7 +127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var $menuItems = this.props.children.map(function($panel, index)  {
-	      var ref = 'tab-menu-${index + 1}';
+	      var ref = ("tab-menu-" + (index + 1));
 	      var title = $panel.props.title;
 	      var classes = classSet({
 	        'tabs-menu-item': true,
@@ -150,21 +147,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      )
 	    );
 	  },
-	  _getPanels:function () {
-	    var $panels = this.props.children.map(function($panel, index)  {
-	      var ref = 'tab-panel-${index + 1}';
-	      var classes = classSet({
-	        'tabs-panel': true,
-	        'is-active': this.state.tabActive === (index + 1)
-	      });
-
-	      return (
-	        React.createElement("article", {ref: ref, key: index, className: classes}, $panel)
-	      );
-	    }.bind(this));
+	  _getSelectedPanel:function () {
+	    var index = this.state.tabActive - 1;
+	    var $panel = this.props.children[index];
 
 	    return (
-	      React.createElement("section", {className: "tabs-panels"}, $panels)
+	      React.createElement("article", {ref: ("tab-panel-" + (index + 1)), className: "tab-panel"}, 
+	        $panel
+	      )
 	    );
 	  }
 	});

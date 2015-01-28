@@ -67,9 +67,7 @@ describe('Tabs', function() {
         </Tabs>
       );
 
-      expect(TU.scryRenderedDOMComponentsWithTag(instance, 'li').length)
-        .toEqual(2);
-
+      expect(TU.scryRenderedDOMComponentsWithTag(instance, 'li').length).toEqual(2);
       expect(function () {
         TU.findRenderedDOMComponentWithClass(instance, 'is-active');
       }).not.toThrow;
@@ -83,12 +81,8 @@ describe('Tabs', function() {
         </Tabs>
       );
 
-      var menuItem = TU
-        .findRenderedDOMComponentWithClass(instance,
-                                           'tabs-menu-item is-active');
-      var pannel = TU
-        .findRenderedDOMComponentWithClass(instance,
-                                           'tabs-panel is-active');
+      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
+      var pannel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
 
       expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content1');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
@@ -102,12 +96,8 @@ describe('Tabs', function() {
         </Tabs>
       );
 
-      var menuItem = TU
-        .findRenderedDOMComponentWithClass(instance,
-                                           'tabs-menu-item is-active');
-      var pannel = TU
-        .findRenderedDOMComponentWithClass(instance,
-                                           'tabs-panel is-active');
+      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
+      var pannel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
 
       expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content2');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item2');

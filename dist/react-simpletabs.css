@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.2.2
+ *  @version v0.3.0
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -39,10 +39,6 @@
   border-bottom: 0;
   color: #333;
 }
-.tabs-panel {
-  display: none;
-  padding: 30px;
-}
-.tabs-panel.is-active {
-  display: block;
+.tab-panel {
+  padding: 30px 50px;
 }
