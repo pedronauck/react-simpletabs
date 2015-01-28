@@ -41,15 +41,15 @@ module.exports = {
       test: /\.(js|jsx)$/,
       loader: 'jsx-loader?insertPragma=React.DOM'
     }, {
-      test: /\.styl$/,
+      test: /\.css/,
       loader: ExtractTextPlugin.extract(
         'style-loader',
-        '!css-loader!stylus-loader'
+        '!css-loader'
       )
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.styl']
+    extensions: ['', '.js', '.jsx']
   },
   plugins: [
     new webpack.DefinePlugin({

@@ -35,6 +35,8 @@ gulp.task('webpack', function(callback) {
 
 gulp.task('server', function() {
   browserSync({
+    open: false,
+    notify: false,
     server: {
       baseDir: ['example', 'dist']
     }
@@ -42,7 +44,7 @@ gulp.task('server', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./lib/**/*.{styl,jsx}', ['webpack']);
+  gulp.watch('./lib/**/*.{css,jsx}', ['webpack']);
 });
 
 gulp.task('default', ['webpack', 'server', 'watch']);
