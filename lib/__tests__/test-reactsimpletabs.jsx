@@ -19,7 +19,7 @@ function usedPropsAreInPropTypes (renderedComponent) {
   return !Object.keys(renderedComponent.props).filter(function (elem) {
     return !~propTypes.indexOf(elem);
   }).length;
-}
+};
 
 describe('Tabs', function() {
   var React;
@@ -54,6 +54,7 @@ describe('Tabs', function() {
     var instance = TU.renderIntoDocument(
       <Tabs><Tabs.Panel></Tabs.Panel></Tabs>
     );
+
     expect(!!usedPropsAreInPropTypes(instance)).toBe(true);
   });
 

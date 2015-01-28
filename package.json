@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "react": "^0.11.2"
+    "react": "^0.12.2"
   },
   "devDependencies": {
     "browser-sync": "^1.5.2",
@@ -56,7 +56,7 @@
     "jest-cli": "^0.1.18",
     "jsx-loader": "^0.11.2",
     "lodash": "^2.4.1",
-    "react-tools": "^0.11.2",
+    "react-tools": "^0.12.2",
     "style-loader": "^0.8.1",
     "stylus-loader": "^0.4.0",
     "webpack": "^1.4.4"
