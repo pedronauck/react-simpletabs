@@ -22,15 +22,9 @@ function usedPropsAreInPropTypes (renderedComponent) {
 };
 
 describe('Tabs', function() {
-  var React;
-  var TU;
-  var Tabs;
-
-  beforeEach(function () {
-    React = require('react/addons');
-    TU = React.addons.TestUtils;
-    Tabs = require('../../dist/react-simpletabs.js');
-  });
+  var React = require('react/addons');
+  var TU = React.addons.TestUtils;
+  var Tabs = require('../../dist/react-simpletabs.js');
 
   it('should be sane', function() {
     expect(Tabs).toBeDefined();
@@ -128,4 +122,48 @@ describe('Tabs', function() {
     });
   });
 
+  describe('onBeforeChange', function(){
+    var sim = TU.Simulate;
+    var scryClass = TU.scryRenderedDOMComponentsWithClass;
+    var currentPanelText = function(comp){
+      return scryClass(comp, 'tab-panel')[0].getDOMNode().textContent;
+    };
+
+    it('calls the function and then changes the tab', function(){
+      var indexes = [];
+      var spy = function(i){ indexes.push(i) };
+      var c = TU.renderIntoDocument(
+        <Tabs onBeforeChange={spy}>
+          <Tabs.Panel title='item1'>content1</Tabs.Panel>
+          <Tabs.Panel title='item2'>content2</Tabs.Panel>
+        </Tabs>
+      );
+      var tabsClickable = scryClass(c, 'tabs-menu-item').map(function(li){
+        return li.getDOMNode().firstChild; //anchor with the click handler
+      });
+      sim.click(tabsClickable[1]);
+      expect(currentPanelText(c)).toEqual('content2');
+      sim.click(tabsClickable[1]);
+      expect(currentPanelText(c)).toEqual('content2');
+      sim.click(tabsClickable[0]);
+      expect(currentPanelText(c)).toEqual('content1');
+      expect(indexes).toEqual([2,2,1]);
+    });
+
+    it('cancels the click by returning false', function(){
+      var cancel = function(){return false};
+      var c = TU.renderIntoDocument(
+        <Tabs tabActive={2} onBeforeChange={cancel}>
+          <Tabs.Panel title='item1'>content1</Tabs.Panel>
+          <Tabs.Panel title='item2'>content2</Tabs.Panel>
+        </Tabs>
+      );
+      var tabsClickable = scryClass(c, 'tabs-menu-item').map(function(li){
+        return li.getDOMNode().firstChild; //anchor with the click handler
+      });
+      expect(currentPanelText(c)).toEqual('content2');
+      sim.click(tabsClickable[0]);
+      expect(currentPanelText(c)).toEqual('content2');
+    });
+  });
 });

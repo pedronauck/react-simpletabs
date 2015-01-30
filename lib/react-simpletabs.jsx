@@ -55,7 +55,8 @@ var Tabs = React.createClass({
     var $selectedTabMenu = this.refs[`tab-menu-${index}`];
 
     if (onBeforeChange) {
-      onBeforeChange(index, $selectedPanel, $selectedTabMenu);
+      var cancel = onBeforeChange(index, $selectedPanel, $selectedTabMenu);
+      if(cancel === false){ return }
     }
 
     this.setState({ tabActive: index }, () => {
