@@ -102,6 +102,30 @@ describe('Tabs', function() {
       expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content2');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item2');
     });
+
+    it('changes the tabActive if it receives new props', function(){
+      var find = TU.findRenderedDOMComponentWithClass;
+      var instance = React.render(
+        <Tabs tabActive={2}>
+          <Tabs.Panel title='item1'>content1</Tabs.Panel>
+          <Tabs.Panel title='item2'>content2</Tabs.Panel>
+        </Tabs>, document.body
+      );
+      var menuItem = find(instance, 'tabs-menu-item is-active');
+      var pannel = find(instance, 'tab-panel');
+      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content2');
+      expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item2');
+      instance = React.render(
+        <Tabs tabActive={1}>
+          <Tabs.Panel title='item1'>content1</Tabs.Panel>
+          <Tabs.Panel title='item2'>content2</Tabs.Panel>
+        </Tabs>, document.body
+      );
+      menuItem = find(instance, 'tabs-menu-item is-active');
+      pannel = find(instance, 'tab-panel');
+      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content1');
+      expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
+    });
   });
 
 });
