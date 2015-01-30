@@ -37,6 +37,9 @@ var Tabs = React.createClass({
       this.props.onMount(index, $selectedPanel, $selectedMenu);
     }
   },
+  componentWillReceiveProps: function(newProps){
+    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+  },
   render () {
     return (
       <div className='tabs'>
@@ -52,7 +55,8 @@ var Tabs = React.createClass({
     var $selectedTabMenu = this.refs[`tab-menu-${index}`];
 
     if (onBeforeChange) {
-      onBeforeChange(index, $selectedPanel, $selectedTabMenu);
+      var cancel = onBeforeChange(index, $selectedPanel, $selectedTabMenu);
+      if(cancel === false){ return }
     }
 
     this.setState({ tabActive: index }, () => {
