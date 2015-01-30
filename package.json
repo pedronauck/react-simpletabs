@@ -1,6 +1,6 @@
 {
   "name": "react-simpletabs",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Just a simple tabs component built with React",
   "author": {
     "name": "Pedro Nauck",
@@ -54,7 +54,7 @@
     "gulp": "^3.8.6",
     "gulp-util": "^3.0.1",
     "jest-cli": "^0.1.18",
-    "jsx-loader": "^0.11.2",
+    "jsx-loader": "^0.12.2",
     "lodash": "^2.4.1",
     "react-tools": "^0.12.2",
     "style-loader": "^0.8.1",
