@@ -102,9 +102,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.props.onMount(index, $selectedPanel, $selectedMenu);
 	    }
 	  },
+	  componentWillReceiveProps: function(newProps){
+	    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+	  },
 	  render:function () {
 	    return (
-	      React.DOM.div({className: "tabs"}, 
+	      React.createElement("div", {className: "tabs"}, 
 	        this._getMenuItems(), 
 	        this._getSelectedPanel()
 	      )
@@ -147,8 +150,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 
 	      return (
-	        React.DOM.li({ref: ref, key: index, className: classes}, 
-	          React.DOM.a({href: "#", onClick: this.setActive.bind(this, index + 1)}, 
+	        React.createElement("li", {ref: ref, key: index, className: classes}, 
+	          React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
 	            title
 	          )
 	        )
@@ -156,8 +159,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }.bind(this));
 
 	    return (
-	      React.DOM.nav({className: "tabs-navigation"}, 
-	        React.DOM.ul({className: "tabs-menu"}, $menuItems)
+	      React.createElement("nav", {className: "tabs-navigation"}, 
+	        React.createElement("ul", {className: "tabs-menu"}, $menuItems)
 	      )
 	    );
 	  },
@@ -166,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var $panel = this.props.children[index];
 
 	    return (
-	      React.DOM.article({ref: "tab-panel", className: "tab-panel"}, 
+	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"}, 
 	        $panel
 	      )
 	    );
@@ -183,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    ]).isRequired
 	  },
 	  render:function () {
-	    return React.DOM.div(null, this.props.children);
+	    return React.createElement("div", null, this.props.children);
 	  }
 	});
 

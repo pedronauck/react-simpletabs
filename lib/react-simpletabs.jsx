@@ -37,6 +37,9 @@ var Tabs = React.createClass({
       this.props.onMount(index, $selectedPanel, $selectedMenu);
     }
   },
+  componentWillReceiveProps: function(newProps){
+    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+  },
   render () {
     return (
       <div className='tabs'>
