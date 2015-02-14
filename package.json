@@ -44,7 +44,7 @@
       "json"
     ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.12.2"
   },
   "devDependencies": {
