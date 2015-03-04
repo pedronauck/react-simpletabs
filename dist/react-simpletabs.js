@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.5.1
+ *  @version v0.5.2
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -182,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    title: React.PropTypes.string.isRequired,
 	    children: React.PropTypes.oneOfType([
 	      React.PropTypes.array,
-	      React.PropTypes.component
+	      React.PropTypes.element
 	    ]).isRequired
 	  },
 	  render:function () {

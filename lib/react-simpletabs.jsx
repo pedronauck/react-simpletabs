@@ -117,7 +117,7 @@ Tabs.Panel = React.createClass({
     title: React.PropTypes.string.isRequired,
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
-      React.PropTypes.component
+      React.PropTypes.element
     ]).isRequired
   },
   render () {
