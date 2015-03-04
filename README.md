@@ -153,8 +153,7 @@ Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------
 tabActive | `Number` | 1 | no | The default tab active
 onMount | `Function` | n/a | no | The function that will be executed when the component is mounted
-onBeforeChange | `Function` | n/a | no | The function that will be executed **before** the state of the component change. Return `false` to cancel the change to the
-active tab.
+onBeforeChange | `Function` | n/a | no | The function that will be executed **before** the state of the component change. Return `false` to cancel the change to the active tab.
 onAfterChange | `Function` | n/a | no | The function that will be executed **
 after** the state of the component change
 
