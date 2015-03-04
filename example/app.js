@@ -14,11 +14,7 @@ var App = React.createClass({
   },
   render: function() {
     return (
-      <Tabs
-        tabActive={2}
-        onBeforeChange={this.onBeforeChange}
-        onAfterChange={this.onAfterChange}
-        onMount={this.onMount}>
+      <Tabs tabActive={2} onBeforeChange={this.onBeforeChange} onAfterChange={this.onAfterChange} onMount={this.onMount}>
         <Tabs.Panel title='Tab #1'>
           <h2>Content #1</h2>
         </Tabs.Panel>
