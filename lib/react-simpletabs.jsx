@@ -76,22 +76,25 @@ var Tabs = React.createClass({
       this.props.children = [this.props.children];
     }
 
-    var $menuItems = this.props.children.map(($panel, index) => {
-      var ref = `tab-menu-${index + 1}`;
-      var title = $panel.props.title;
-      var classes = classSet({
-        'tabs-menu-item': true,
-        'is-active': this.state.tabActive === (index + 1)
-      });
+    var $menuItems = this.props.children
+      .map($panel => typeof $panel === 'function' ? $panel() : $panel)
+      .filter($panel => $panel)
+      .map(($panel, index) => {
+        var ref = `tab-menu-${index + 1}`;
+        var title = $panel.props.title;
+        var classes = classSet({
+          'tabs-menu-item': true,
+          'is-active': this.state.tabActive === (index + 1)
+        });
 
-      return (
-        <li ref={ref} key={index} className={classes}>
-          <a href='#' onClick={this.setActive.bind(this, index + 1)}>
-            {title}
-          </a>
-        </li>
-      );
-    });
+        return (
+          <li ref={ref} key={index} className={classes}>
+            <a href='#' onClick={this.setActive.bind(this, index + 1)}>
+              {title}
+            </a>
+          </li>
+        );
+      });
 
     return (
       <nav className='tabs-navigation'>

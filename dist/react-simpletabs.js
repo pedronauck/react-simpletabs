@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.5.2
+ *  @version v0.5.3
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -141,22 +141,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.props.children = [this.props.children];
 	    }
 
-	    var $menuItems = this.props.children.map(function($panel, index)  {
-	      var ref = ("tab-menu-" + (index + 1));
-	      var title = $panel.props.title;
-	      var classes = classSet({
-	        'tabs-menu-item': true,
-	        'is-active': this.state.tabActive === (index + 1)
-	      });
+	    var $menuItems = this.props.children
+	      .map(function($panel)  {return typeof $panel === 'function' ? $panel() : $panel;})
+	      .filter(function($panel)  {return $panel;})
+	      .map(function($panel, index)  {
+	        var ref = ("tab-menu-" + (index + 1));
+	        var title = $panel.props.title;
+	        var classes = classSet({
+	          'tabs-menu-item': true,
+	          'is-active': this.state.tabActive === (index + 1)
+	        });
 
-	      return (
-	        React.createElement("li", {ref: ref, key: index, className: classes}, 
-	          React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
-	            title
+	        return (
+	          React.createElement("li", {ref: ref, key: index, className: classes}, 
+	            React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
+	              title
+	            )
 	          )
-	        )
-	      );
-	    }.bind(this));
+	        );
+	      }.bind(this));
 
 	    return (
 	      React.createElement("nav", {className: "tabs-navigation"}, 
