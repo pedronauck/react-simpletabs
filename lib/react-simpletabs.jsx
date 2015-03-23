@@ -2,7 +2,7 @@
 'use strict';
 
 var React = require('react');
-var classSet = require('../utils/classSet');
+var classNames = require('classnames');
 
 if (process.env.NODE_ENV !== 'test') {
   require('./react-simpletabs.css');
@@ -11,6 +11,11 @@ if (process.env.NODE_ENV !== 'test') {
 var Tabs = React.createClass({
   displayName: 'Tabs',
   propTypes: {
+    className: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.string,
+      React.PropTypes.object
+    ]),
     tabActive: React.PropTypes.number,
     onMount: React.PropTypes.func,
     onBeforeChange: React.PropTypes.func,
@@ -41,8 +46,9 @@ var Tabs = React.createClass({
     if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
   },
   render () {
+    var className = classNames('tabs', this.props.className);
     return (
-      <div className='tabs'>
+      <div className={className}>
         {this._getMenuItems()}
         {this._getSelectedPanel()}
       </div>
@@ -82,10 +88,10 @@ var Tabs = React.createClass({
       .map(($panel, index) => {
         var ref = `tab-menu-${index + 1}`;
         var title = $panel.props.title;
-        var classes = classSet({
-          'tabs-menu-item': true,
-          'is-active': this.state.tabActive === (index + 1)
-        });
+        var classes = classNames(
+          'tabs-menu-item',
+          this.state.tabActive === (index + 1) && 'is-active'
+        );
 
         return (
           <li ref={ref} key={index} className={classes}>

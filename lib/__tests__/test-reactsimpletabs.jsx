@@ -30,13 +30,13 @@ describe('Tabs', function() {
     expect(Tabs).toBeDefined();
   });
 
-  it('should throw if no children pannels passed to Tabs', function() {
+  it('should throw if no children panels passed to Tabs', function() {
     expect(function () {
       TU.renderIntoDocument(<Tabs></Tabs>);
     }).throws;
   });
 
-  it('be renderable if pannels passed to tabs', function() {
+  it('be renderable if panels passed to tabs', function() {
     var instance = TU.renderIntoDocument(
       <Tabs><Tabs.Panel></Tabs.Panel></Tabs>
     );
@@ -52,8 +52,45 @@ describe('Tabs', function() {
     expect(!!usedPropsAreInPropTypes(instance)).toBe(true);
   });
 
+  describe('when passed className as props', function () {
+    it('should render extra className correctly', function() {
+      var instance = TU.renderIntoDocument(
+        <Tabs className="extra-class"><Tabs.Panel></Tabs.Panel></Tabs>
+      );
+
+      expect(function () {
+        TU.findRenderedDOMComponentWithClass(instance, 'tabs extra-class');
+      }).not.toThrow();
+    });
+
+    it('should render className as object correctly', function() {
+      var instance = TU.renderIntoDocument(
+        <Tabs className={{ tabs2: true }}><Tabs.Panel></Tabs.Panel></Tabs>
+      );
+
+      expect(function () {
+        TU.findRenderedDOMComponentWithClass(instance, 'tabs3');
+      }).toThrow();
+
+      expect(function () {
+        TU.findRenderedDOMComponentWithClass(instance, 'tabs tabs2');
+      }).not.toThrow();
+    });
+
+    it('should render className as array correctly', function() {
+      var instance = TU.renderIntoDocument(
+        <Tabs className={['extra-class']}><Tabs.Panel></Tabs.Panel></Tabs>
+      );
+
+      expect(function () {
+        TU.findRenderedDOMComponentWithClass(instance, 'tabs extra-class');
+      }).not.toThrow();
+
+    });
+  });
+
   describe('regarding its functionality,', function() {
-    it('show only one pannel at a time, multiple tabs', function() {
+    it('show only one panel at a time, multiple tabs', function() {
       var instance = TU.renderIntoDocument(
         <Tabs>
           <Tabs.Panel><h1>1</h1></Tabs.Panel>
@@ -64,10 +101,10 @@ describe('Tabs', function() {
       expect(TU.scryRenderedDOMComponentsWithTag(instance, 'li').length).toEqual(2);
       expect(function () {
         TU.findRenderedDOMComponentWithClass(instance, 'is-active');
-      }).not.toThrow;
+      }).not.toThrow();
     });
 
-    it('show the first pannel if no active passed', function() {
+    it('show the first panel if no active passed', function() {
       var instance = TU.renderIntoDocument(
         <Tabs>
           <Tabs.Panel title='item1'>content1</Tabs.Panel>
@@ -76,13 +113,13 @@ describe('Tabs', function() {
       );
 
       var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
-      var pannel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
+      var panel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
 
-      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content1');
+      expect(panel.getDOMNode().children[0].innerHTML).toEqual('content1');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
     });
 
-    it('show the second pannel if tabActive == 2', function() {
+    it('show the second panel if tabActive == 2', function() {
       var instance = TU.renderIntoDocument(
         <Tabs tabActive={2}>
           <Tabs.Panel title='item1'>content1</Tabs.Panel>
@@ -91,9 +128,9 @@ describe('Tabs', function() {
       );
 
       var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
-      var pannel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
+      var panel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
 
-      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content2');
+      expect(panel.getDOMNode().children[0].innerHTML).toEqual('content2');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item2');
     });
 
@@ -106,8 +143,8 @@ describe('Tabs', function() {
         </Tabs>, document.body
       );
       var menuItem = find(instance, 'tabs-menu-item is-active');
-      var pannel = find(instance, 'tab-panel');
-      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content2');
+      var panel = find(instance, 'tab-panel');
+      expect(panel.getDOMNode().children[0].innerHTML).toEqual('content2');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item2');
       instance = React.render(
         <Tabs tabActive={1}>
@@ -116,8 +153,8 @@ describe('Tabs', function() {
         </Tabs>, document.body
       );
       menuItem = find(instance, 'tabs-menu-item is-active');
-      pannel = find(instance, 'tab-panel');
-      expect(pannel.getDOMNode().children[0].innerHTML).toEqual('content1');
+      panel = find(instance, 'tab-panel');
+      expect(panel.getDOMNode().children[0].innerHTML).toEqual('content1');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
     });
   });

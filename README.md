@@ -151,6 +151,7 @@ For more details, check out the API below.
 
 Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------
+className | `Array\|Object\|String` | n/a | no | Additional class names for wrapping div
 tabActive | `Number` | 1 | no | The default tab active
 onMount | `Function` | n/a | no | The function that will be executed when the component is mounted
 onBeforeChange | `Function` | n/a | no | The function that will be executed **before** the state of the component change. Return `false` to cancel the change to the active tab.
