@@ -77,10 +77,6 @@ var Tabs = React.createClass({
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    if (!Array.isArray(this.props.children)) {
-      this.props.children = [this.props.children];
-    }
-
     var $menuItems = React.Children
       .map(this.props.children, ($panel, index) => {
         if (typeof $panel === 'function') {
