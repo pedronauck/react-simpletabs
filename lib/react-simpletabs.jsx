@@ -19,10 +19,7 @@ var Tabs = React.createClass({
     onMount: React.PropTypes.func,
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.element
-    ]).isRequired
+    children: React.PropTypes.node.isRequired
   },
   getDefaultProps () {
     return { tabActive: 1 };
@@ -125,10 +122,7 @@ Tabs.Panel = React.createClass({
       React.PropTypes.string,
       React.PropTypes.element
     ]).isRequired,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.element
-    ]).isRequired
+    children: React.PropTypes.node.isRequired
   },
   render () {
     return <div>{this.props.children}</div>;
