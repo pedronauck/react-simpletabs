@@ -81,12 +81,15 @@ var Tabs = React.createClass({
       this.props.children = [this.props.children];
     }
 
-    var $menuItems = this.props.children
-      .map($panel => typeof $panel === 'function' ? $panel() : $panel)
-      .filter($panel => $panel)
-      .map(($panel, index) => {
+    var $menuItems = React.Children
+      .map(this.props.children, ($panel, index) => {
+        if (typeof $panel === 'function') {
+          $panel = $panel()
+        }
+
         var ref = `tab-menu-${index + 1}`;
         var title = $panel.props.title;
+
         var classes = classNames(
           'tabs-menu-item',
           this.state.tabActive === (index + 1) && 'is-active'
@@ -122,7 +125,10 @@ var Tabs = React.createClass({
 Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
-    title: React.PropTypes.string.isRequired,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.element
+    ]).isRequired,
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.element

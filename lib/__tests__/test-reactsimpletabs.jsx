@@ -157,6 +157,21 @@ describe('Tabs', function() {
       expect(panel.getDOMNode().children[0].innerHTML).toEqual('content1');
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
     });
+    it('handles component titles', function() {
+      var instance = TU.renderIntoDocument(
+        <Tabs>
+          <Tabs.Panel title={<span><i>1</i>item</span>}>content1</Tabs.Panel>
+          <Tabs.Panel title={<span><i>2</i>item</span>}>content2</Tabs.Panel>
+        </Tabs>
+      );
+
+      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
+      var panel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
+      var title = menuItem.getDOMNode().children[0].children[0];
+
+      expect(title.children[0].innerHTML).toEqual('1');
+      expect(title.children[1].innerHTML).toEqual('item');
+    });
   });
 
   describe('onBeforeChange', function(){
