@@ -20,41 +20,41 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
+
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
+
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/
+
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-/******/
+
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
+
+
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-/******/
+
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
+
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-/******/
+
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
@@ -84,10 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onMount: React.PropTypes.func,
 	    onBeforeChange: React.PropTypes.func,
 	    onAfterChange: React.PropTypes.func,
-	    children: React.PropTypes.oneOfType([
-	      React.PropTypes.array,
-	      React.PropTypes.element
-	    ]).isRequired
+	    children: React.PropTypes.node.isRequired
 	  },
 	  getDefaultProps:function () {
 	    return { tabActive: 1 };
@@ -142,16 +139,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      throw new Error('Tabs must contain at least one Tabs.Panel');
 	    }
 
-	    if (!Array.isArray(this.props.children)) {
-	      this.props.children = [this.props.children];
-	    }
+	    var $menuItems = React.Children
+	      .map(this.props.children, function($panel, index)  {
+	        if (typeof $panel === 'function') {
+	          $panel = $panel()
+	        }
 
-	    var $menuItems = this.props.children
-	      .map(function($panel)  {return typeof $panel === 'function' ? $panel() : $panel;})
-	      .filter(function($panel)  {return $panel;})
-	      .map(function($panel, index)  {
 	        var ref = ("tab-menu-" + (index + 1));
 	        var title = $panel.props.title;
+
 	        var classes = classNames(
 	          'tabs-menu-item',
 	          this.state.tabActive === (index + 1) && 'is-active'
@@ -187,11 +183,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	Tabs.Panel = React.createClass({
 	  displayName: 'Panel',
 	  propTypes: {
-	    title: React.PropTypes.string.isRequired,
-	    children: React.PropTypes.oneOfType([
-	      React.PropTypes.array,
+	    title: React.PropTypes.oneOfType([
+	      React.PropTypes.string,
 	      React.PropTypes.element
-	    ]).isRequired
+	    ]).isRequired,
+	    children: React.PropTypes.node.isRequired
 	  },
 	  render:function () {
 	    return React.createElement("div", null, this.props.children);
@@ -252,3 +248,4 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ }
 /******/ ])
 });
+;
