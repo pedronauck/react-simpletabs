@@ -42,7 +42,9 @@ var Tabs = React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps){
-    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+      this.setState({tabActive: newProps.tabActive});
+    }
   },
   render () {
     var className = classNames('tabs', this.props.className);
