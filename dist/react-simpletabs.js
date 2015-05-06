@@ -170,7 +170,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  _getSelectedPanel:function () {
 	    var index = this.state.tabActive - 1;
-	    var $panel = this.props.children[index];
+	    var $panel
+	    React.Children.forEach(this.props.children, function ($item, i) {
+	      if (index === i) {
+	        $panel = $item;
+	        return;
+	      }
+	    })
 
 	    return (
 	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"}, 
