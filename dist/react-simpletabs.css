@@ -31,4 +31,9 @@
 
 .tab-panel {
   padding: 10px 50px;
+  display: none;
+}
+
+.tab-panel.is-active {
+  display: block;
 }

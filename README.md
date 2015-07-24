@@ -92,8 +92,11 @@ So, the semantic HTML structure will be something like this:
         <li class='tabs-menu-item'>Tab #2</li>
       </ul>
     </nav>
-    <article class='tab-panel'>
+    <article class='tab-panel is-active'>
       The content of active panel here
+    </article>
+    <article class='tab-panel'>
+      The content of hidden panel here
     </article>
   <div>
 ```
