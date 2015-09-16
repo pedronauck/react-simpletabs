@@ -25,6 +25,7 @@
     "tab"
   ],
   "scripts": {
+    "pub": "npm publish && bower register react-simpletabs git@github.com:pedronauck/react-simpletabs.git",
     "bundle": "gulp webpack && gulp webpack --production",
     "start": "gulp",
     "test": "jest"
