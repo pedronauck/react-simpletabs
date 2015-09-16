@@ -19,10 +19,7 @@ var Tabs = React.createClass({
     onMount: React.PropTypes.func,
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.element
-    ]).isRequired
+    children: React.PropTypes.node.isRequired
   },
   getDefaultProps () {
     return { tabActive: 1 };
@@ -78,16 +75,15 @@ var Tabs = React.createClass({
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    if (!Array.isArray(this.props.children)) {
-      this.props.children = [this.props.children];
-    }
+    var $menuItems = React.Children
+      .map(this.props.children, ($panel, index) => {
+        if (typeof $panel === 'function') {
+          $panel = $panel()
+        }
 
-    var $menuItems = this.props.children
-      .map($panel => typeof $panel === 'function' ? $panel() : $panel)
-      .filter($panel => $panel)
-      .map(($panel, index) => {
         var ref = `tab-menu-${index + 1}`;
         var title = $panel.props.title;
+
         var classes = classNames(
           'tabs-menu-item',
           this.state.tabActive === (index + 1) && 'is-active'
@@ -110,7 +106,13 @@ var Tabs = React.createClass({
   },
   _getSelectedPanel () {
     var index = this.state.tabActive - 1;
-    var $panel = this.props.children[index];
+    var $panel
+    React.Children.forEach(this.props.children, function ($item, i) {
+      if (index === i) {
+        $panel = $item;
+        return;
+      }
+    })
 
     return (
       <article ref='tab-panel' className='tab-panel'>
@@ -123,11 +125,11 @@ var Tabs = React.createClass({
 Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
-    title: React.PropTypes.string.isRequired,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
+    title: React.PropTypes.oneOfType([
+      React.PropTypes.string,
       React.PropTypes.element
-    ]).isRequired
+    ]).isRequired,
+    children: React.PropTypes.node.isRequired
   },
   render () {
     return <div>{this.props.children}</div>;

@@ -84,10 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onMount: React.PropTypes.func,
 	    onBeforeChange: React.PropTypes.func,
 	    onAfterChange: React.PropTypes.func,
-	    children: React.PropTypes.oneOfType([
-	      React.PropTypes.array,
-	      React.PropTypes.element
-	    ]).isRequired
+	    children: React.PropTypes.node.isRequired
 	  },
 	  getDefaultProps:function () {
 	    return { tabActive: 1 };
@@ -143,16 +140,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      throw new Error('Tabs must contain at least one Tabs.Panel');
 	    }
 
-	    if (!Array.isArray(this.props.children)) {
-	      this.props.children = [this.props.children];
-	    }
+	    var $menuItems = React.Children
+	      .map(this.props.children, function($panel, index)  {
+	        if (typeof $panel === 'function') {
+	          $panel = $panel()
+	        }
 
-	    var $menuItems = this.props.children
-	      .map(function($panel)  {return typeof $panel === 'function' ? $panel() : $panel;})
-	      .filter(function($panel)  {return $panel;})
-	      .map(function($panel, index)  {
 	        var ref = ("tab-menu-" + (index + 1));
 	        var title = $panel.props.title;
+
 	        var classes = classNames(
 	          'tabs-menu-item',
 	          this.state.tabActive === (index + 1) && 'is-active'
@@ -175,7 +171,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  _getSelectedPanel:function () {
 	    var index = this.state.tabActive - 1;
-	    var $panel = this.props.children[index];
+	    var $panel
+	    React.Children.forEach(this.props.children, function ($item, i) {
+	      if (index === i) {
+	        $panel = $item;
+	        return;
+	      }
+	    })
 
 	    return (
 	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"}, 
@@ -188,11 +190,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	Tabs.Panel = React.createClass({
 	  displayName: 'Panel',
 	  propTypes: {
-	    title: React.PropTypes.string.isRequired,
-	    children: React.PropTypes.oneOfType([
-	      React.PropTypes.array,
+	    title: React.PropTypes.oneOfType([
+	      React.PropTypes.string,
 	      React.PropTypes.element
-	    ]).isRequired
+	    ]).isRequired,
+	    children: React.PropTypes.node.isRequired
 	  },
 	  render:function () {
 	    return React.createElement("div", null, this.props.children);
