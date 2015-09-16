@@ -54,6 +54,8 @@ var Tabs = React.createClass({
     );
   },
   setActive(index, e) {
+    e.preventDefault();
+
     var onAfterChange = this.props.onAfterChange;
     var onBeforeChange = this.props.onBeforeChange;
     var $selectedPanel = this.refs['tab-panel'];
@@ -70,7 +72,6 @@ var Tabs = React.createClass({
       }
     });
 
-    e.preventDefault();
   },
   _getMenuItems () {
     if (!this.props.children) {
