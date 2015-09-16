@@ -11,6 +11,7 @@
 }
 
 .tabs-menu-item a {
+  cursor: pointer;
   display: block;
   color: #A9A9A9;
 }
