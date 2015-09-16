@@ -1,11 +1,11 @@
 /*!
- * 
+ *
  *  React Simpletabs - Just a simple tabs component built with React
  *  @version v0.6.1
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
- * 
+ *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -107,13 +107,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  componentWillReceiveProps: function(newProps){
-	    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+	    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+	      this.setState({tabActive: newProps.tabActive});
+	    }
 	  },
 	  render:function () {
 	    var className = classNames('tabs', this.props.className);
 	    return (
-	      React.createElement("div", {className: className}, 
-	        this._getMenuItems(), 
+	      React.createElement("div", {className: className},
+	        this._getMenuItems(),
 	        this._getSelectedPanel()
 	      )
 	    );
@@ -136,7 +138,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        onAfterChange(index, $selectedPanel, $selectedTabMenu);
 	      }
 	    });
-
 	  },
 	  _getMenuItems:function () {
 	    if (!this.props.children) {
@@ -159,8 +160,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        );
 
 	        return (
-	          React.createElement("li", {ref: ref, key: index, className: classes}, 
-	            React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
+	          React.createElement("li", {ref: ref, key: index, className: classes},
+	            React.createElement("a", {onClick: this.setActive.bind(this, index + 1)},
 	              title
 	            )
 	          )
@@ -168,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }.bind(this));
 
 	    return (
-	      React.createElement("nav", {className: "tabs-navigation"}, 
+	      React.createElement("nav", {className: "tabs-navigation"},
 	        React.createElement("ul", {className: "tabs-menu"}, $menuItems)
 	      )
 	    );
@@ -178,7 +179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var $panel = this.props.children[index];
 
 	    return (
-	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"}, 
+	      React.createElement("article", {ref: "tab-panel", className: "tab-panel"},
 	        $panel
 	      )
 	    );
