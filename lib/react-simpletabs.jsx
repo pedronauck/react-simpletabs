@@ -42,7 +42,9 @@ var Tabs = React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps){
-    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+      this.setState({tabActive: newProps.tabActive});
+    }
   },
   render () {
     var className = classNames('tabs', this.props.className);
@@ -54,6 +56,8 @@ var Tabs = React.createClass({
     );
   },
   setActive(index, e) {
+    e.preventDefault();
+
     var onAfterChange = this.props.onAfterChange;
     var onBeforeChange = this.props.onBeforeChange;
     var $selectedPanel = this.refs[`tab-panel-${index}`];
@@ -69,8 +73,6 @@ var Tabs = React.createClass({
         onAfterChange(index, $selectedPanel, $selectedTabMenu);
       }
     });
-
-    e.preventDefault();
   },
   _getMenuItems () {
     if (!this.props.children) {
@@ -94,7 +96,7 @@ var Tabs = React.createClass({
 
         return (
           <li ref={ref} key={index} className={classes}>
-            <a href='#' onClick={this.setActive.bind(this, index + 1)}>
+            <a onClick={this.setActive.bind(this, index + 1)}>
               {title}
             </a>
           </li>

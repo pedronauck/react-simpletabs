@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.6.1
+ *  @version v0.7.0
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -20,6 +20,7 @@
 }
 
 .tabs-menu-item a {
+  cursor: pointer;
   display: block;
   color: #A9A9A9;
 }

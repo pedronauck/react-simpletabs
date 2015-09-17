@@ -1,7 +1,7 @@
 /*!
  * 
  *  React Simpletabs - Just a simple tabs component built with React
- *  @version v0.6.1
+ *  @version v0.7.0
  *  @link https://github.com/pedronauck/react-simpletabs
  *  @license MIT
  *  @author Pedro Nauck (https://github.com/pedronauck)
@@ -107,7 +107,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  componentWillReceiveProps: function(newProps){
-	    if(newProps.tabActive){ this.setState({tabActive: newProps.tabActive}) }
+	    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+	      this.setState({tabActive: newProps.tabActive});
+	    }
 	  },
 	  render:function () {
 	    var className = classNames('tabs', this.props.className);
@@ -119,6 +121,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    );
 	  },
 	  setActive:function(index, e) {
+	    e.preventDefault();
+
 	    var onAfterChange = this.props.onAfterChange;
 	    var onBeforeChange = this.props.onBeforeChange;
 	    var $selectedPanel = this.refs[("tab-panel-" + index)];
@@ -134,8 +138,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        onAfterChange(index, $selectedPanel, $selectedTabMenu);
 	      }
 	    });
-
-	    e.preventDefault();
 	  },
 	  _getMenuItems:function () {
 	    if (!this.props.children) {
@@ -159,7 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        return (
 	          React.createElement("li", {ref: ref, key: index, className: classes}, 
-	            React.createElement("a", {href: "#", onClick: this.setActive.bind(this, index + 1)}, 
+	            React.createElement("a", {onClick: this.setActive.bind(this, index + 1)}, 
 	              title
 	            )
 	          )
