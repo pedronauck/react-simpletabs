@@ -46,7 +46,7 @@
     ]
   },
   "peerDependencies": {
-    "react": "0.12.x - 1.x"
+    "react": "0.12.x - 1.x || ^0.14.0-rc1"
   },
   "dependencies": {
     "classnames": "^1.2.0"
