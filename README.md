@@ -162,6 +162,7 @@ onAfterChange | `Function` | n/a | no | The function that will be executed **aft
 Property | Type | Default | Required | Description
 -------- | ---- | ------- | -------- |-----------
 title | `String` | n/a | yes | The title that will generate the *tab menu items*
+titleClassName | `Array\|Object\|String` | n/a | no | Additional class names for *tab menu items*
 
 ## Contributing
 
