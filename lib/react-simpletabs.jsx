@@ -89,8 +89,10 @@ var Tabs = React.createClass({
       .map(($panel, index) => {
         var ref = `tab-menu-${index + 1}`;
         var title = $panel.props.title;
+        var titleClassName = $panel.props.titleClassName;
         var classes = classNames(
           'tabs-menu-item',
+          titleClassName,
           this.state.tabActive === (index + 1) && 'is-active'
         );
 
@@ -125,6 +127,11 @@ Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
     title: React.PropTypes.string.isRequired,
+    titleClassName: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.string,
+      React.PropTypes.object
+    ]),
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.element
