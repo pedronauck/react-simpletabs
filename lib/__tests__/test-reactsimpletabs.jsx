@@ -119,11 +119,13 @@ describe('Tabs', function() {
       expect(menuItem.getDOMNode().children[0].innerHTML).toEqual('item1');
     });
 
-    it('renders all panels', function() {
+    it('renders all existing panels', function() {
       var instance = TU.renderIntoDocument(
         <Tabs>
           <Tabs.Panel title='item1'>content1</Tabs.Panel>
           <Tabs.Panel title='item2'>content2</Tabs.Panel>
+          {null}
+          {undefined}
         </Tabs>
       );
 

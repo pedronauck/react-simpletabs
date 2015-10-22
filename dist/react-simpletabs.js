@@ -188,7 +188,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    );
 	  },
 	  _getPanels: function () {
-	    return this.props.children.map(this._getPanel);
+	    return this.props.children.filter(function (panel) {
+	      return !!panel;
+	    }).map(this._getPanel);
 	  }
 	});
 
