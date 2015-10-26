@@ -46,7 +46,7 @@
     ]
   },
   "peerDependencies": {
-    "react": "0.12.x - 1.x || ^0.14.0-rc1"
+    "react": "0.12.x - 0.13.x"
   },
   "dependencies": {
     "classnames": "^1.2.0"
@@ -60,7 +60,7 @@
     "jest-cli": "^0.1.18",
     "jsx-loader": "^0.12.2",
     "lodash": "^2.4.1",
-    "react": "0.12.x - 1.x",
+    "react": "0.12.x - 0.13.x",
     "react-tools": "^0.12.2",
     "style-loader": "^0.8.1",
     "webpack": "^1.4.4"
