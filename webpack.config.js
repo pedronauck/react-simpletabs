@@ -31,15 +31,19 @@ module.exports = {
       commonjs: 'react',
       commonjs2: 'react',
       amd: 'react'
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom'
     }
   },
   module: {
     loaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?harmony'
-    }, {
-      test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?insertPragma=React.DOM'
+      test: /\.jsx?$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel?optional[]=runtime&stage=0'
     }, {
       test: /\.css/,
       loader: ExtractTextPlugin.extract(

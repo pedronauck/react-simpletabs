@@ -31,9 +31,12 @@
     "test": "jest"
   },
   "jest": {
-    "scriptPreprocessor": "./utils/jsx-preprocessor.js",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
-      "./node_modules/react"
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/fbjs",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils"
     ],
     "testFileExtensions": [
       "js",
@@ -45,24 +48,25 @@
       "json"
     ]
   },
-  "peerDependencies": {
-    "react": "0.12.x - 1.x || ^0.14.0-rc1"
-  },
   "dependencies": {
     "classnames": "^1.2.0"
   },
   "devDependencies": {
+    "babel-core": "^5.8.34",
+    "babel-jest": "^5.3.0",
+    "babel-loader": "^5.4.0",
     "browser-sync": "^1.5.2",
     "css-loader": "^0.9.0",
     "extract-text-webpack-plugin": "^0.3.1",
     "gulp": "^3.8.6",
     "gulp-util": "^3.0.1",
-    "jest-cli": "^0.1.18",
-    "jsx-loader": "^0.12.2",
+    "jest-cli": "^0.8.0",
     "lodash": "^2.4.1",
-    "react": "0.12.x - 1.x",
+    "react": "^0.14.3",
+    "react-addons-test-utils": "^0.14.3",
+    "react-dom": "^0.14.3",
     "react-tools": "^0.12.2",
     "style-loader": "^0.8.1",
-    "webpack": "^1.4.4"
+    "webpack": "^1.12.8"
   }
 }

@@ -79,12 +79,7 @@ var Tabs = React.createClass({
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    if (!Array.isArray(this.props.children)) {
-      this.props.children = [this.props.children];
-    }
-
-    var $menuItems = this.props.children
-      .map($panel => typeof $panel === 'function' ? $panel() : $panel)
+    var $menuItems = React.Children.map(React.Children.toArray(this.props.children), $panel => typeof $panel === 'function' ? $panel() : $panel)
       .filter($panel => $panel)
       .map(($panel, index) => {
         var ref = `tab-menu-${index + 1}`;
@@ -111,7 +106,7 @@ var Tabs = React.createClass({
   },
   _getSelectedPanel () {
     var index = this.state.tabActive - 1;
-    var $panel = this.props.children[index];
+    var $panel = React.Children.toArray(this.props.children)[index];
 
     return (
       <article ref='tab-panel' className='tab-panel'>
