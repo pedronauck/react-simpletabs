@@ -36,6 +36,7 @@ Using the component is simpler than installing. See an example with [browserify]
 
 ```javascript
 var React = require('react')
+var ReactDOM = require('react-dom')
 
 var Tabs = require('react-simpletabs');
 var App = React.createClass({
@@ -56,7 +57,7 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```
 
 If you decide to use just Javascript without any module loader, you can get the global variable `window.ReactSimpleTabs` *(or just `ReactSimpleTabs`)*:
