@@ -1,6 +1,3 @@
-/** @jsx React.DOM */
-'use strict';
-
 var Tabs = ReactSimpleTabs;
 var App = React.createClass({
   onMount: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
@@ -29,4 +26,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App />, document.getElementById('tabs'));
+ReactDOM.render(<App />, document.getElementById('tabs'));

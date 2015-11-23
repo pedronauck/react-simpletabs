@@ -35,7 +35,8 @@ Then you're done! :smile_cat:
 Using the component is simpler than installing. See an example with [browserify](http://truongtx.me/2014/07/18/using-reactjs-with-browserify-and-gulp/) to bundle your script:
 
 ```javascript
-/** @jsx React.DOM */
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 var Tabs = require('react-simpletabs');
 var App = React.createClass({
@@ -56,14 +57,13 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```
 
 If you decide to use just Javascript without any module loader, you can get the global variable `window.ReactSimpleTabs` *(or just `ReactSimpleTabs`)*:
 
 ```javascript
-  /** @jsx React.DOM */
-
+  var React = require('react');
   var Tabs = ReactSimpleTabs;
   var App = React.createClass({
     render: function() {
