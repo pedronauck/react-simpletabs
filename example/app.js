@@ -1,5 +1,3 @@
-'use strict';
-
 var Tabs = ReactSimpleTabs;
 var App = React.createClass({
   onMount: function(selectedIndex, $selectedPanel, $selectedTabMenu) {
