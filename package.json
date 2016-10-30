@@ -31,14 +31,6 @@
     "test": "jest",
     "build:example": "babel ./example/app.js -o ./example/app.es5.js"
   },
-  "jest": {
-    "scriptPreprocessor": "./utils/jsx-preprocessor.js",
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ]
-  },
   "peerDependencies": {
     "react": "15.x"
   },
