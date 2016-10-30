@@ -1,6 +1,6 @@
 {
   "name": "react-simpletabs",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Just a simple tabs component built with React",
   "author": {
     "name": "Pedro Nauck",
@@ -27,18 +27,12 @@
   "scripts": {
     "pub": "npm publish && bower register react-simpletabs git@github.com:pedronauck/react-simpletabs.git",
     "bundle": "gulp webpack && gulp webpack --production",
-    "start": "gulp",
-    "test": "jest"
+    "start": "webpack-dev-server",
+    "test": "jest",
+    "build:example": "babel ./example/app.js -o ./example/app.es5.js"
   },
   "jest": {
     "scriptPreprocessor": "./utils/jsx-preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "./node_modules/react"
-    ],
-    "testFileExtensions": [
-      "js",
-      "jsx"
-    ],
     "moduleFileExtensions": [
       "js",
       "jsx",
@@ -46,23 +40,30 @@
     ]
   },
   "peerDependencies": {
-    "react": "0.12.x - 1.x || ^0.14.0-rc1"
+    "react": "15.x"
   },
   "dependencies": {
-    "classnames": "^1.2.0"
+    "classnames": "^2.2.5"
   },
   "devDependencies": {
-    "browser-sync": "^1.5.2",
-    "css-loader": "^0.9.0",
-    "extract-text-webpack-plugin": "^0.3.1",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "browser-sync": "^2.17.5",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.8.6",
     "gulp-util": "^3.0.1",
-    "jest-cli": "^0.1.18",
-    "jsx-loader": "^0.12.2",
-    "lodash": "^2.4.1",
-    "react": "0.12.x - 1.x",
-    "react-tools": "^0.12.2",
-    "style-loader": "^0.8.1",
-    "webpack": "^1.4.4"
+    "jest-cli": "^16.0.2",
+    "lodash": "^4.16.4",
+    "react": "15.x",
+    "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-tools": "^0.13.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.4.4",
+    "webpack-dev-server": "^1.16.2"
   }
 }

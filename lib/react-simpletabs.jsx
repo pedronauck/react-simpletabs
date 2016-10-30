@@ -20,12 +20,12 @@ var Tabs = React.createClass({
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
     children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
+      React.PropTypes.node,
       React.PropTypes.element
     ]).isRequired
   },
   getDefaultProps () {
-    return { tabActive: 1 };
+    return {tabActive: 1};
   },
   getInitialState () {
     return {
@@ -41,8 +41,8 @@ var Tabs = React.createClass({
       this.props.onMount(index, $selectedPanel, $selectedMenu);
     }
   },
-  componentWillReceiveProps: function(newProps){
-    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+  componentWillReceiveProps: function (newProps) {
+    if (newProps.tabActive && newProps.tabActive !== this.props.tabActive) {
       this.setState({tabActive: newProps.tabActive});
     }
   },
@@ -65,25 +65,26 @@ var Tabs = React.createClass({
 
     if (onBeforeChange) {
       var cancel = onBeforeChange(index, $selectedPanel, $selectedTabMenu);
-      if(cancel === false){ return }
+      if (cancel === false) {
+        return
+      }
     }
 
-    this.setState({ tabActive: index }, () => {
+    this.setState({tabActive: index}, () => {
       if (onAfterChange) {
         onAfterChange(index, $selectedPanel, $selectedTabMenu);
       }
     });
   },
-  _getMenuItems () {
+  _children () {
     if (!this.props.children) {
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    if (!Array.isArray(this.props.children)) {
-      this.props.children = [this.props.children];
-    }
-
-    var $menuItems = this.props.children
+    return React.Children.toArray(this.props.children);
+  },
+  _getMenuItems () {
+    var $menuItems = this._children()
       .map($panel => typeof $panel === 'function' ? $panel() : $panel)
       .filter($panel => $panel)
       .map(($panel, index) => {
@@ -111,7 +112,7 @@ var Tabs = React.createClass({
   },
   _getSelectedPanel () {
     var index = this.state.tabActive - 1;
-    var $panel = this.props.children[index];
+    var $panel = this._children()[index];
 
     return (
       <article ref='tab-panel' className='tab-panel'>
