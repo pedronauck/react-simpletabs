@@ -2,7 +2,6 @@
 
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
-    browserSync = require('browser-sync'),
     webpack = require('webpack'),
     webpackConfig = require('./webpack.config.js');
 
@@ -28,23 +27,8 @@ gulp.task('webpack', function(callback) {
     }
 
     gutil.log('[webpack]', stats.toString({ colors: true }));
-    browserSync.reload();
     callback();
   });
 });
 
-gulp.task('server', function() {
-  browserSync({
-    open: false,
-    notify: false,
-    server: {
-      baseDir: ['example', 'dist']
-    }
-  });
-});
-
-gulp.task('watch', function() {
-  gulp.watch('./lib/**/*.{css,jsx}', ['webpack']);
-});
-
-gulp.task('default', ['webpack', 'server', 'watch']);
+gulp.task('default', ['webpack']);

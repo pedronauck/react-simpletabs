@@ -2,32 +2,32 @@
   An example of how stylize the tabs
 ============================================================================= */
 
-.tabs {
+.React-SimpleTabs--tabs {
   margin-top: -50px;
 }
 
-.tabs-navigation {
+.React-SimpleTabs--tabs-navigation {
   padding: 0 50px;
 }
 
-.tabs-navigation {
+.React-SimpleTabs--tabs-navigation {
   padding: 0 20px;
   max-height: 50px;
   border-bottom: 1px solid #DDD;
 }
 
-.tabs-menu {
+.React-SimpleTabs--tabs-menu {
   display: table;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.tabs-menu-item {
+.React-SimpleTabs--tabs-menu-item {
   float: left;
 }
 
-.tabs-menu-item a {
+.React-SimpleTabs--tabs-menu-item a {
   display: block;
   padding: 0 40px;
   height: 50px;
@@ -36,11 +36,11 @@
   color: #A9A9A9;
 }
 
-.tabs-menu-item:not(.is-active) a:hover {
+.React-SimpleTabs--tabs-menu-item:not(.React-SimpleTabs--is-active) a:hover {
   color: #3498db;
 }
 
-.tabs-menu-item.is-active a {
+.React-SimpleTabs--tabs-menu-item.React-SimpleTabs--is-active a {
   background: #fff;
   border: 1px solid #DDD;
   border-top: 2px solid #3498db;

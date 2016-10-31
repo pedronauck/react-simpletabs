@@ -13,7 +13,7 @@ var banner = _.template([
   ' @license <%= pkg.license %>',
   ' @author <%= pkg.author.name %> (<%= pkg.author.url %>)',
   ''
-].join('\n'), {
+].join('\n'))({
   pkg: require('./package.json')
 });
 
@@ -25,21 +25,11 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'ReactSimpleTabs'
   },
-  externals: {
-    react: {
-      root: 'React',
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'react'
-    }
-  },
   module: {
     loaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?harmony'
-    }, {
-      test: /\.(js|jsx)$/,
-      loader: 'jsx-loader?insertPragma=React.DOM'
+      test: /\.(js[x])$/,
+      exclude: /node_modules/,
+      loader: 'babel'
     }, {
       test: /\.css/,
       loader: ExtractTextPlugin.extract(
@@ -47,6 +37,14 @@ module.exports = {
         '!css-loader'
       )
     }]
+  },
+  externals: {
+    react: {
+      root: 'React',
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react'
+    }
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -61,5 +59,16 @@ module.exports = {
       allChunks: true
     }),
     new webpack.BannerPlugin(banner, { entryOnly: true })
-  ]
+  ],
+  devServer: {
+    contentBase: './example',
+    port: 3030,
+    host: '0.0.0.0',
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
+    lazy: false,
+    noInfo: true,
+    colors: true
+  }
 };

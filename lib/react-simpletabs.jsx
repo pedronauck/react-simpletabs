@@ -20,12 +20,12 @@ var Tabs = React.createClass({
     onBeforeChange: React.PropTypes.func,
     onAfterChange: React.PropTypes.func,
     children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
+      React.PropTypes.node,
       React.PropTypes.element
     ]).isRequired
   },
   getDefaultProps () {
-    return { tabActive: 1 };
+    return {tabActive: 1};
   },
   getInitialState () {
     return {
@@ -41,13 +41,13 @@ var Tabs = React.createClass({
       this.props.onMount(index, $selectedPanel, $selectedMenu);
     }
   },
-  componentWillReceiveProps: function(newProps){
-    if(newProps.tabActive && newProps.tabActive !== this.props.tabActive){
+  componentWillReceiveProps: function (newProps) {
+    if (newProps.tabActive && newProps.tabActive !== this.props.tabActive) {
       this.setState({tabActive: newProps.tabActive});
     }
   },
   render () {
-    var className = classNames('tabs', this.props.className);
+    var className = classNames('React-SimpleTabs--tabs', this.props.className);
     return (
       <div className={className}>
         {this._getMenuItems()}
@@ -65,33 +65,34 @@ var Tabs = React.createClass({
 
     if (onBeforeChange) {
       var cancel = onBeforeChange(index, $selectedPanel, $selectedTabMenu);
-      if(cancel === false){ return }
+      if (cancel === false) {
+        return
+      }
     }
 
-    this.setState({ tabActive: index }, () => {
+    this.setState({tabActive: index}, () => {
       if (onAfterChange) {
         onAfterChange(index, $selectedPanel, $selectedTabMenu);
       }
     });
   },
-  _getMenuItems () {
+  _children () {
     if (!this.props.children) {
       throw new Error('Tabs must contain at least one Tabs.Panel');
     }
 
-    if (!Array.isArray(this.props.children)) {
-      this.props.children = [this.props.children];
-    }
-
-    var $menuItems = this.props.children
+    return React.Children.toArray(this.props.children);
+  },
+  _getMenuItems () {
+    var $menuItems = this._children()
       .map($panel => typeof $panel === 'function' ? $panel() : $panel)
       .filter($panel => $panel)
       .map(($panel, index) => {
         var ref = `tab-menu-${index + 1}`;
         var title = $panel.props.title;
         var classes = classNames(
-          'tabs-menu-item',
-          this.state.tabActive === (index + 1) && 'is-active'
+          'React-SimpleTabs--tabs-menu-item',
+          this.state.tabActive === (index + 1) && 'React-SimpleTabs--is-active'
         );
 
         return (
@@ -104,17 +105,17 @@ var Tabs = React.createClass({
       });
 
     return (
-      <nav className='tabs-navigation'>
-        <ul className='tabs-menu'>{$menuItems}</ul>
+      <nav className='React-SimpleTabs--tabs-navigation'>
+        <ul className='React-SimpleTabs--tabs-menu'>{$menuItems}</ul>
       </nav>
     );
   },
   _getSelectedPanel () {
     var index = this.state.tabActive - 1;
-    var $panel = this.props.children[index];
+    var $panel = this._children()[index];
 
     return (
-      <article ref='tab-panel' className='tab-panel'>
+      <article ref='tab-panel' className='React-SimpleTabs--tab-panel'>
         {$panel}
       </article>
     );
