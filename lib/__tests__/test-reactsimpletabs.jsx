@@ -95,7 +95,7 @@ describe('Tabs', function() {
 
       expect(TU.scryRenderedDOMComponentsWithTag(instance, 'li').length).toEqual(2);
       expect(function () {
-        TU.findRenderedDOMComponentWithClass(instance, 'is-active');
+        TU.findRenderedDOMComponentWithClass(instance, 'React-SimpleTabs--is-active');
       }).not.toThrow();
     });
 
@@ -107,8 +107,8 @@ describe('Tabs', function() {
         </Tabs>
       );
 
-      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
-      var panel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
+      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'React-SimpleTabs--tabs-menu-item React-SimpleTabs--is-active');
+      var panel = TU.findRenderedDOMComponentWithClass(instance, 'React-SimpleTabs--tab-panel');
 
       expect(panel.children[0].innerHTML).toEqual('content1');
       expect(menuItem.children[0].innerHTML).toEqual('item1');
@@ -122,8 +122,8 @@ describe('Tabs', function() {
         </Tabs>
       );
 
-      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'tabs-menu-item is-active');
-      var panel = TU.findRenderedDOMComponentWithClass(instance, 'tab-panel');
+      var menuItem = TU.findRenderedDOMComponentWithClass(instance, 'React-SimpleTabs--tabs-menu-item React-SimpleTabs--is-active');
+      var panel = TU.findRenderedDOMComponentWithClass(instance, 'React-SimpleTabs--tab-panel');
 
       expect(panel.children[0].innerHTML).toEqual('content2');
       expect(menuItem.children[0].innerHTML).toEqual('item2');
@@ -137,8 +137,8 @@ describe('Tabs', function() {
           <Tabs.Panel title='item2'>content2</Tabs.Panel>
         </Tabs>, document.body
       );
-      var menuItem = find(instance, 'tabs-menu-item is-active');
-      var panel = find(instance, 'tab-panel');
+      var menuItem = find(instance, 'React-SimpleTabs--tabs-menu-item React-SimpleTabs--is-active');
+      var panel = find(instance, 'React-SimpleTabs--tab-panel');
       expect(panel.children[0].innerHTML).toEqual('content2');
       expect(menuItem.children[0].innerHTML).toEqual('item2');
       instance = ReactDOM.render(
@@ -147,8 +147,8 @@ describe('Tabs', function() {
           <Tabs.Panel title='item2'>content2</Tabs.Panel>
         </Tabs>, document.body
       );
-      menuItem = find(instance, 'tabs-menu-item is-active');
-      panel = find(instance, 'tab-panel');
+      menuItem = find(instance, 'React-SimpleTabs--tabs-menu-item React-SimpleTabs--is-active');
+      panel = find(instance, 'React-SimpleTabs--tab-panel');
       expect(panel.children[0].innerHTML).toEqual('content1');
       expect(menuItem.children[0].innerHTML).toEqual('item1');
     });
@@ -158,7 +158,7 @@ describe('Tabs', function() {
     var sim = TU.Simulate;
     var scryClass = TU.scryRenderedDOMComponentsWithClass;
     var currentPanelText = function(comp){
-      return scryClass(comp, 'tab-panel')[0].textContent;
+      return scryClass(comp, 'React-SimpleTabs--tab-panel')[0].textContent;
     };
 
     it('calls the function and then changes the tab', function(){
@@ -170,7 +170,7 @@ describe('Tabs', function() {
           <Tabs.Panel title='item2'>content2</Tabs.Panel>
         </Tabs>
       );
-      var tabsClickable = scryClass(c, 'tabs-menu-item').map(function(li){
+      var tabsClickable = scryClass(c, 'React-SimpleTabs--tabs-menu-item').map(function(li){
         return li.firstChild; //anchor with the click handler
       });
       sim.click(tabsClickable[1]);
@@ -190,7 +190,7 @@ describe('Tabs', function() {
           <Tabs.Panel title='item2'>content2</Tabs.Panel>
         </Tabs>
       );
-      var tabsClickable = scryClass(c, 'tabs-menu-item').map(function(li){
+      var tabsClickable = scryClass(c, 'React-SimpleTabs--tabs-menu-item').map(function(li){
         return li.firstChild; //anchor with the click handler
       });
       expect(currentPanelText(c)).toEqual('content2');

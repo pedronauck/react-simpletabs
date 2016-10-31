@@ -106,7 +106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  render: function render() {
-	    var className = classNames('tabs', this.props.className);
+	    var className = classNames('React-SimpleTabs--tabs', this.props.className);
 	    return React.createElement(
 	      'div',
 	      { className: className },
@@ -152,7 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }).map(function ($panel, index) {
 	      var ref = 'tab-menu-' + (index + 1);
 	      var title = $panel.props.title;
-	      var classes = classNames('tabs-menu-item', _this.state.tabActive === index + 1 && 'is-active');
+	      var classes = classNames('React-SimpleTabs--tabs-menu-item', _this.state.tabActive === index + 1 && 'React-SimpleTabs--is-active');
 
 	      return React.createElement(
 	        'li',
@@ -167,10 +167,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'nav',
-	      { className: 'tabs-navigation' },
+	      { className: 'React-SimpleTabs--tabs-navigation' },
 	      React.createElement(
 	        'ul',
-	        { className: 'tabs-menu' },
+	        { className: 'React-SimpleTabs--tabs-menu' },
 	        $menuItems
 	      )
 	    );
@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'article',
-	      { ref: 'tab-panel', className: 'tab-panel' },
+	      { ref: 'tab-panel', className: 'React-SimpleTabs--tab-panel' },
 	      $panel
 	    );
 	  }

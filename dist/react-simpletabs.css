@@ -7,29 +7,29 @@
  *  @author Pedro Nauck (https://github.com/pedronauck)
  * 
  */
-.tabs-menu {
+.React-SimpleTabs--tabs-menu {
   display: table;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.tabs-menu-item {
+.React-SimpleTabs--tabs-menu-item {
   float: left;
   margin-right: 20px;
 }
 
-.tabs-menu-item a {
+.React-SimpleTabs--tabs-menu-item a {
   cursor: pointer;
   display: block;
   color: #A9A9A9;
 }
 
-.tabs-menu-item:not(.is-active) a:hover,
-.tabs-menu-item.is-active a {
+.React-SimpleTabs--tabs-menu-item:not(.React-SimpleTabs--is-active) a:hover,
+.React-SimpleTabs--tabs-menu-item.React-SimpleTabs--is-active a {
   color: #3498DB;
 }
 
-.tab-panel {
+.React-SimpleTabs--tab-panel {
   padding: 10px 50px;
 }
