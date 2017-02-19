@@ -124,7 +124,7 @@ var Tabs = React.createClass({
 Tabs.Panel = React.createClass({
   displayName: 'Panel',
   propTypes: {
-    title: React.PropTypes.string.isRequired,
+    title: React.PropTypes.any.isRequired,
     children: React.PropTypes.oneOfType([
       React.PropTypes.array,
       React.PropTypes.element
