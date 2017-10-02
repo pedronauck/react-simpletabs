@@ -1,27 +1,29 @@
 'use strict';
 
 var React = require('react');
+var PropTypes = require('prop-types');
 var classNames = require('classnames');
+var createReactClass = require('create-react-class');
 
 if (process.env.NODE_ENV !== 'test') {
   require('./react-simpletabs.css');
 }
 
-var Tabs = React.createClass({
+var Tabs = createReactClass({
   displayName: 'Tabs',
   propTypes: {
-    className: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.string,
-      React.PropTypes.object
+    className: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.string,
+      PropTypes.object
     ]),
-    tabActive: React.PropTypes.number,
-    onMount: React.PropTypes.func,
-    onBeforeChange: React.PropTypes.func,
-    onAfterChange: React.PropTypes.func,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.element
+    tabActive: PropTypes.number,
+    onMount: PropTypes.func,
+    onBeforeChange: PropTypes.func,
+    onAfterChange: PropTypes.func,
+    children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.element
     ]).isRequired
   },
   getDefaultProps () {
@@ -121,13 +123,13 @@ var Tabs = React.createClass({
   }
 });
 
-Tabs.Panel = React.createClass({
+Tabs.Panel = createReactClass({
   displayName: 'Panel',
   propTypes: {
-    title: React.PropTypes.string.isRequired,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.array,
-      React.PropTypes.element
+    title: PropTypes.string.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.element
     ]).isRequired
   },
   render () {
