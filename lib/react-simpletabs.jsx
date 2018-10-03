@@ -2,7 +2,7 @@
 
 var React = require('react');
 var createReactClass = require('create-react-class');
-var PropTyps = require('prop-types');
+var PropTypes = require('prop-types');
 var classNames = require('classnames');
 
 if (process.env.NODE_ENV !== 'test') {

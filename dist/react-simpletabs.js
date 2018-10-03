@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var createReactClass = __webpack_require__(2);
-	var PropTyps = __webpack_require__(9);
+	var PropTypes = __webpack_require__(9);
 	var classNames = __webpack_require__(14);
 
 	if (true) {
