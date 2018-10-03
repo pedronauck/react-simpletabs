@@ -46,7 +46,9 @@
     ]
   },
   "peerDependencies": {
-    "react": "0.12.x - 1.x || ^0.14.0-rc1"
+    "react": "0.12.x - 1.x || ^0.14.0-rc1 || ^16.0.0",
+    "prop-types": "^15.0.0",
+    "create-react-class": "^15.0.0"
   },
   "dependencies": {
     "classnames": "^1.2.0"
